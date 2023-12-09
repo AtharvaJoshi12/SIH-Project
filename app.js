@@ -27,5 +27,5 @@ const routes = require("./server/routes/appRoutes.js");
 app.use("/", routes);
 
 app.listen(port, () => {
-  console.log(`App is listening on port ${port}`);
+  console.log(`App is listening on port http://localhost:${port}`);
 });
