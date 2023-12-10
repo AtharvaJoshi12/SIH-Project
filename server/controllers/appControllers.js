@@ -2,6 +2,7 @@ require("../models/database");
 const { request } = require("express");
 const Register = require("../models/register");
 const Profile = require("../models/profile");
+const path = require("path");
 
 exports.homepage = async (req, res) => {
   res.render("index");
@@ -29,6 +30,26 @@ exports.profilePage = async (req, res) => {
 
 exports.editProfilePage = async (req, res) => {
   res.render("editProfile");
+};
+
+exports.testPage = async (req, res) => {
+  const htmlFilePath = path.join(__dirname, "../../public/test/test.html");
+  res.sendFile(htmlFilePath);
+};
+
+exports.psychoPage = async (req, res) => {
+  const htmlFilePath = path.join(__dirname, "../../public/test/psycho.html");
+  res.sendFile(htmlFilePath);
+};
+
+exports.aptitudePage = async (req, res) => {
+  const htmlFilePath = path.join(__dirname, "../../public/test/aptitude.html");
+  res.sendFile(htmlFilePath);
+};
+
+exports.interestPage = async (req, res) => {
+  const htmlFilePath = path.join(__dirname, "../../public/test/interest.html");
+  res.sendFile(htmlFilePath);
 };
 
 exports.studentRegisterAPI = async (req, res) => {

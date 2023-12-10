@@ -8,6 +8,10 @@ router.get("/studentRegister", appControllers.studentRegisterPage);
 router.get("/parentLogin", appControllers.parentLoginPage);
 router.get("/profile", appControllers.profilePage);
 router.get("/editProfile", appControllers.editProfilePage);
+router.get("/test", appControllers.testPage);
+router.get("/test/psycho", appControllers.psychoPage);
+router.get("/test/aptitude", appControllers.aptitudePage);
+router.get("/test/interest", appControllers.interestPage);
 
 router.post("/studentRegister", appControllers.studentRegisterAPI);
 router.post("/studentLogin", appControllers.studentLoginAPI);
