@@ -1,13 +1,17 @@
 const mongoose = require("mongoose");
 
-mongoose
-  .connect(process.env.MONGODB_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then(() => {
+const mongoDBUrl = "mongodb://localhost:27017";
+
+async function connectToDatabase() {
+  try {
+    await mongoose.connect(mongoDBUrl, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
     console.log("Connection Successful");
-  })
-  .catch(() => {
-    console.log("No connection");
-  });
+  } catch (error) {
+    console.error("Error connecting to the database:", error.message);
+  }
+}
+
+connectToDatabase();
