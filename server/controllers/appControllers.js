@@ -3,7 +3,6 @@ const { request } = require("express");
 const Register = require("../models/register");
 const Parent = require("../models/parent");
 const Profile = require("../models/profile");
->>>>>>> f7d70efe2416120dcd01189b59ae69a8bb3c7e74
 const path = require("path");
 
 exports.homepage = async (req, res) => {
