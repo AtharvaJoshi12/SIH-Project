@@ -9,8 +9,13 @@ require("dotenv").config();
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
-app.use(expressLayouts);
 
+// Set up EJS and EJS layouts
+app.set("view engine", "ejs");
+app.use(expressLayouts);
+app.set("layout", "./layouts/main");
+
+// Set up session and flash messages
 app.use(
   session({
     secret: "CgdsfdtfdgfcfdsrmnbSecretSession",
@@ -20,9 +25,7 @@ app.use(
 );
 app.use(flash());
 
-app.set("layout", "./layouts/main");
-app.set("view engine", "ejs");
-
+// Include routes
 const routes = require("./server/routes/appRoutes.js");
 app.use("/", routes);
 

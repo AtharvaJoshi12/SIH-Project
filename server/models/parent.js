@@ -1,11 +1,21 @@
+// parent.js
+
 const mongoose = require("mongoose");
 
-const userSchema = new mongoose.Schema({
+const parentSchema = new mongoose.Schema({
   firstName: {
     type: String,
     required: true,
   },
   lastName: {
+    type: String,
+    required: true,
+  },
+  studentEmail: {
+    type: String,
+    required: true,
+  },
+  studentPassword: {
     type: String,
     required: true,
   },
@@ -28,9 +38,8 @@ const userSchema = new mongoose.Schema({
       message: "Password and Confirm Password must match",
     },
   },
-
 });
 
-const Register = mongoose.model("Register", userSchema);
+const Parent = mongoose.model("Parent", parentSchema);
 
-module.exports = Register;
+module.exports = Parent;
