@@ -1,7 +1,13 @@
+
+
 require("../models/database");
 const { request } = require("express");
 const Register = require("../models/register");
+<<<<<<< HEAD
+const Parent = require('../models/parent')
+=======
 const Profile = require("../models/profile");
+>>>>>>> f7d70efe2416120dcd01189b59ae69a8bb3c7e74
 
 exports.homepage = async (req, res) => {
   res.render("index");
@@ -20,7 +26,15 @@ exports.studentRegisterPage = async (req, res) => {
 };
 
 exports.parentLoginPage = async (req, res) => {
-  res.render("parentLogin");
+  const infoErrorsObj = req.flash("infoErrors");
+  const infoSubmitObj = req.flash("infoSubmit");
+  res.render("parentLogin", { infoErrorsObj, infoSubmitObj });
+};
+
+exports.parentRegisterPage = async (req, res) => {
+  const infoErrorsObj = req.flash("infoErrors");
+  const infoSubmitObj = req.flash("infoSubmit");
+  res.render("parentRegister", { infoErrorsObj, infoSubmitObj });
 };
 
 exports.profilePage = async (req, res) => {
@@ -41,12 +55,12 @@ exports.studentRegisterAPI = async (req, res) => {
       confirmPassword: req.body.confirmPassword,
     });
 
-    const registerd = await registerUser.save();
-    req.flash("infoSubmit", "Registration Successfull");
-    res.status(200).redirect("studentLogin");
+    const registered = await registerUser.save();
+    req.flash("infoSubmit", "Registration Successful");
+    res.status(200).redirect("/studentLogin");
   } catch (error) {
-    req.flash("infoErrors", `error:${error}`);
-    res.status(400).redirect("studentRegister");
+    req.flash("infoErrors", `Error: ${error.message}`);
+    res.status(400).redirect("/studentRegister");
   }
 };
 
@@ -57,8 +71,13 @@ exports.studentLoginAPI = async (req, res) => {
 
     const userEmail = await Register.findOne({ email: email });
 
+<<<<<<< HEAD
+    if (userEmail && userEmail.password === password) {
+      res.status(200).render("profile");
+=======
     if (userEmail.password === password) {
       res.status(200).render("");
+>>>>>>> f7d70efe2416120dcd01189b59ae69a8bb3c7e74
     } else {
       res.status(400).send("Invalid Password");
     }
@@ -67,6 +86,63 @@ exports.studentLoginAPI = async (req, res) => {
   }
 };
 
+<<<<<<< HEAD
+exports.parentRegisterAPI = async (req, res) => {
+  const studentEmail = req.body.studentEmail;
+  const studentPassword = req.body.studentPassword;
+
+  try {
+    const studentExists = await Register.findOne({ email: studentEmail, password: studentPassword });
+
+    if (studentExists) {
+      const parentExists = await Parent.findOne({ email: req.body.parentEmail });
+
+      if (!parentExists) {
+        const registerParent = new Parent({
+          firstName: req.body.firstName,
+          lastName: req.body.lastName,
+          email: req.body.parentEmail,
+          studentEmail: studentEmail,
+          studentPassword: studentPassword,
+          password: req.body.password,
+          confirmPassword: req.body.confirmPassword,
+        });
+
+        const registered = await registerParent.save();
+        req.flash("infoSubmit", "Parent Registration Successful");
+        res.status(200).redirect("/parentLogin");
+      } else {
+        req.flash("infoErrors", "Parent with this email already exists");
+        res.status(400).redirect("/parentRegister");
+      }
+    } else {
+      req.flash("infoErrors", "Invalid Student Email or Password");
+      res.status(400).redirect("/parentRegister");
+    }
+  } catch (error) {
+    req.flash("infoErrors", `Error: ${error.message}`);
+    res.status(400).redirect("/parentRegister");
+  }
+};
+
+exports.parentLoginAPI = async (req, res) => {
+  try {
+    const email = req.body.email;
+    const password = req.body.password;
+
+    const parentEmail = await Parent.findOne({ email: email });
+
+    if (parentEmail && parentEmail.password === password) {
+      res.status(200).render("profile");
+    } else {
+      res.status(400).send("Invalid Password");
+    }
+  } catch (error) {
+    res.status(400).send("Invalid Details");
+  }
+};
+
+=======
 // exports.studentLoginAPI = async (req, res) => {
 //   try {
 //     const email = req.body.email;
@@ -111,3 +187,4 @@ exports.editProfileAPI = async (req, res) => {
     res.status(400).redirect("editProfile");
   }
 };
+>>>>>>> f7d70efe2416120dcd01189b59ae69a8bb3c7e74
