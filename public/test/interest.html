@@ -9,6 +9,83 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.css"
       rel="stylesheet"
     />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+
+      body {
+        background-color: #f8f8f8;
+      }
+      .app {
+        background: rgb(255, 255, 255);
+        width: 90%;
+        max-width: 600px;
+        border-radius: 10px;
+        padding: 30px;
+        border: 0px solid rgb(177, 177, 177);
+        box-shadow: -1px 10px 20px 0px rgba(197, 208, 216, 0.2);
+      }
+
+      h1 {
+        color: #001e4d;
+        padding: 10px;
+        text-align: center;
+      }
+
+      .quiz {
+        padding: 20px 0;
+      }
+
+      .quiz h2 {
+        font-size: 18px;
+        color: #353535;
+        font-weight: 600;
+        margin-bottom: 30px;
+      }
+
+      .btn {
+        background-color: #e4e0e0;
+        color: #222;
+        font-weight: 500;
+        width: 100%;
+        border: 0px solid #222;
+        padding: 15px;
+        margin: 10px 0;
+        text-align: left;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+
+      .btn:hover:not(:disabled) {
+        background-color: #a7a5a5;
+      }
+
+      .btn:disabled {
+        cursor: no-drop;
+      }
+
+      #next-btn {
+        background-color: #001e4d;
+        color: #fff;
+        font-weight: 500;
+        widows: 150px;
+        border: 0;
+        padding: 15px 30px;
+        margin: 20px auto 0;
+        border-radius: 4px;
+        cursor: pointer;
+        display: none;
+      }
+
+      .correct {
+        background-color: #a7a5a5;
+      }
+    </style>
   </head>
   <body>
     <header class="text-gray-600 body-font">
@@ -165,7 +242,41 @@
       </nav>
     </header>
 
-    <h1>Interest test</h1>
+    <div
+      class="showIfLogin mt-[100px] flex flex-col justify-center items-center lg:items-start lg:flex-row lg:justify-around"
+    >
+      <div class="">
+        <h1
+          class="mb-1 m-5 text-4xl font-bold leading-none tracking-tight text-gray-800 md:text-2xl lg:text-3xl"
+        >
+          Interest Test
+        </h1>
+        <img
+          src="../img/interest.png"
+          class="rounded-lg w-[300px] lg:w-[400px] m-auto"
+          alt=""
+        />
+      </div>
+      <div class="app mt-10">
+        <div class="quiz">
+          <h2 id="question">Question here</h2>
+          <div id="answer-buttons">
+            <button class="btn">Option 1</button>
+            <button class="btn">Option 2</button>
+            <button class="btn">Option 3</button>
+          </div>
+          <button id="next-btn">Next</button>
+          <a href="../test/result.html">
+            <button
+              id="resultButton"
+              class="text-white bg-[#001e4d] hover:bg-[#05265a] focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-[#001e4d] dark:hover:bg-[#05265a]"
+            >
+              Show Me Results
+            </button>
+          </a>
+        </div>
+      </div>
+    </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js"></script>
     <script>
@@ -174,11 +285,487 @@
         if (localStorage.getItem("login") === "true") {
           document.getElementById("loggedInContent").style.display = "block";
           document.getElementById("notLoggedInContent").style.display = "none";
+          document.querySelector(".showIfLogin").style.display = "flex";
         } else {
           document.getElementById("loggedInContent").style.display = "none";
           document.getElementById("notLoggedInContent").style.display = "block";
+          document.querySelector(".showIfLogin").style.display = "none";
         }
       });
+    </script>
+
+    <!-- Quiz script -->
+    <script>
+      const questions = [
+        {
+          question: "What is the primary focus of the Science stream?",
+          answers: [
+            { text: "Mathematics and Physics", score: 1 },
+            { text: "Biology and Chemistry	", score: 0 },
+          ],
+          typeOfQuestion: "Science",
+        },
+        {
+          question: "Which field involves the study of living organisms?",
+          answers: [
+            { text: "Physics", score: 0 },
+            { text: "Biology", score: 1 },
+          ],
+          typeOfQuestion: "Science",
+        },
+        {
+          question:
+            "What is the primary subject in Commerce that involves the study of financial transactions?",
+          answers: [
+            { text: "Geography", score: 0 },
+            { text: "Accountancy", score: 1 },
+          ],
+          typeOfQuestion: "Commerce",
+        },
+        {
+          question:
+            "Which career path is associated with Commerce and involves analyzing financial data?",
+          answers: [
+            { text: "Hotel Management", score: 0 },
+            { text: "Chartered Accountancy", score: 1 },
+          ],
+          typeOfQuestion: "Commerce",
+        },
+        {
+          question:
+            "Which stream focuses on the study of human society, culture, and moral values?",
+          answers: [
+            { text: "Humanities", score: 1 },
+            { text: "Engineering", score: 0 },
+          ],
+          typeOfQuestion: "Humanities & Moral Sciences",
+        },
+        {
+          question: "What is a common career option after pursuing Humanities?",
+          answers: [
+            { text: "Journalism", score: 1 },
+            { text: "Bio Technology", score: 0 },
+          ],
+          typeOfQuestion: "Humanities & Moral Sciences",
+        },
+        {
+          question: "Home Science primarily involves the study of:",
+          answers: [
+            { text: "Astrophysics", score: 0 },
+            { text: "Household management", score: 1 },
+          ],
+          typeOfQuestion: "Home Science",
+        },
+        {
+          question: "Which career option is related to Home Science?",
+          answers: [
+            { text: "Nutritionist", score: 1 },
+            { text: "Computer Science", score: 0 },
+          ],
+          typeOfQuestion: "Home Science",
+        },
+        {
+          question: "What is the primary focus of Fine Arts & Design?",
+          answers: [
+            { text: "Physics and Chemistry", score: 0 },
+            { text: "Creativity and artistic expression", score: 1 },
+          ],
+          typeOfQuestion: "Fine Arts & Design",
+        },
+        {
+          question: "Which career path involves designing visual concepts?",
+          answers: [
+            { text: "Graphic Designing", score: 1 },
+            { text: "Physical Education", score: 0 },
+          ],
+          typeOfQuestion: "Fine Arts & Design",
+        },
+        {
+          question: "What does the field of Engineering primarily involve?",
+          answers: [
+            { text: "Studying ancient civilizations", score: 0 },
+            { text: "Designing and building", score: 1 },
+          ],
+          typeOfQuestion: "Engineering",
+        },
+        {
+          question:
+            "Which branch of Engineering deals with computer systems and software?",
+          answers: [
+            { text: "Computer Science Engineering", score: 1 },
+            { text: "Law", score: 0 },
+          ],
+          typeOfQuestion: "Engineering",
+        },
+        {
+          question: "What is the main focus of the Medical stream?",
+          answers: [
+            { text: "Financial transactions", score: 0 },
+            { text: "Diagnosis and treatment of diseases", score: 1 },
+          ],
+          typeOfQuestion: "Medical",
+        },
+        {
+          question: "Which profession is associated with the Medical field?",
+          answers: [
+            { text: "Mass Communication", score: 0 },
+            { text: "Doctor", score: 1 },
+          ],
+          typeOfQuestion: "Medical",
+        },
+        {
+          question: "What does the field of Architecture primarily involve?",
+          answers: [
+            { text: "Agricultural practices", score: 0 },
+            { text: "Designing buildings and structures", score: 1 },
+          ],
+          typeOfQuestion: "Architecture",
+        },
+        {
+          question: "Which profession is related to Architecture?",
+          answers: [
+            { text: "Architect", score: 1 },
+            { text: "Fine Arts", score: 0 },
+          ],
+          typeOfQuestion: "Architecture",
+        },
+        {
+          question: "Which stream involves in-depth study of natural sciences?",
+          answers: [
+            { text: "Defense", score: 0 },
+            { text: "Pure Science", score: 1 },
+          ],
+          typeOfQuestion: "Pure Science (B.SC)",
+        },
+        {
+          question:
+            "What is a common career option after completing a B.Sc in Pure Science?",
+          answers: [
+            { text: "Hotel Management", score: 0 },
+            { text: "Research Scientist", score: 1 },
+          ],
+          typeOfQuestion: "Pure Science (B.SC)",
+        },
+        {
+          question: "What is the focus of the Bio Technology field?",
+          answers: [
+            { text: "Manipulating biological organisms", score: 1 },
+            { text: "Managing corporate finances", score: 0 },
+          ],
+          typeOfQuestion: "Bio Technology",
+        },
+        {
+          question:
+            "Which career path involves genetic engineering and research?",
+          answers: [
+            { text: "Bio Technologist", score: 1 },
+            { text: "Journalism", score: 0 },
+          ],
+          typeOfQuestion: "Bio Technology",
+        },
+        {
+          question: "What is the primary focus of the Agriculture stream?",
+          answers: [
+            { text: "Legal practices", score: 0 },
+            { text: "Farming and cultivation", score: 1 },
+          ],
+          typeOfQuestion: "Agriculture",
+        },
+        {
+          question: "Which profession is associated with Agriculture?",
+          answers: [
+            { text: "Agriculturist", score: 1 },
+            { text: "Mass Communication", score: 0 },
+          ],
+          typeOfQuestion: "Agriculture",
+        },
+        {
+          question:
+            "What does the field of Hotel Management primarily involve?",
+          answers: [
+            { text: "Hospitality and service industry", score: 1 },
+            { text: "Astrophysics", score: 0 },
+          ],
+          typeOfQuestion: "Hotel Management",
+        },
+        {
+          question: "Which career path is related to Hotel Management?",
+          answers: [
+            { text: "Home Science", score: 0 },
+            { text: "Hotel Manager", score: 1 },
+          ],
+          typeOfQuestion: "Hotel Management",
+        },
+        {
+          question:
+            "Which field is associated with the study of legal systems?",
+          answers: [
+            { text: "Fine Arts", score: 0 },
+            { text: "Law", score: 1 },
+          ],
+          typeOfQuestion: "Law",
+        },
+        {
+          question:
+            "What is a common profession after completing a degree in Law?",
+          answers: [
+            { text: "Lawyer", score: 1 },
+            { text: "Physical Education", score: 0 },
+          ],
+          typeOfQuestion: "Law",
+        },
+        {
+          question: "What is the primary focus of Journalism?",
+          answers: [
+            { text: "Engineering", score: 0 },
+            { text: "Reporting news and events", score: 1 },
+          ],
+          typeOfQuestion: "Journalism",
+        },
+        {
+          question:
+            "Which career path involves writing articles for newspapers or magazines?",
+          answers: [
+            { text: "Computer Science", score: 0 },
+            { text: "Journalist", score: 1 },
+          ],
+          typeOfQuestion: "Journalism",
+        },
+        {
+          question: "What is the focus of Mass Communication?",
+          answers: [
+            { text: "Broadcasting information to the public", score: 1 },
+            { text: "Agricultural practices", score: 0 },
+          ],
+          typeOfQuestion: "Mass Communication",
+        },
+        {
+          question: "Which career option is related to Mass Communication?",
+          answers: [
+            { text: "Media Analyst", score: 1 },
+            { text: "Medical", score: 0 },
+          ],
+          typeOfQuestion: "Mass Communication",
+        },
+        {
+          question: "What does the field of Merchant Navy primarily involve?",
+          answers: [
+            { text: "Hotel Management", score: 0 },
+            { text: "Maritime activities and navigation", score: 1 },
+          ],
+          typeOfQuestion: "Merchant Navy",
+        },
+        {
+          question: "Which profession is associated with the Merchant Navy?",
+          answers: [
+            { text: "Law", score: 0 },
+            { text: "Marine Engineer", score: 1 },
+          ],
+          typeOfQuestion: "Merchant Navy",
+        },
+        {
+          question: "What is the primary focus of a career in Defense?",
+          answers: [
+            { text: "Journalism", score: 0 },
+            { text: "National security and military operations", score: 1 },
+          ],
+          typeOfQuestion: "Defense",
+        },
+        {
+          question: "Which career path is related to Defense?",
+          answers: [
+            { text: "Army Officer", score: 1 },
+            { text: "Fine Arts", score: 0 },
+          ],
+          typeOfQuestion: "Defense",
+        },
+        {
+          question:
+            "Which field involves organizing and coordinating business activities?",
+          answers: [
+            { text: "Bio Technology", score: 0 },
+            { text: "Management", score: 1 },
+          ],
+          typeOfQuestion: "Management",
+        },
+        {
+          question:
+            "What is a common profession after completing a degree in Management?",
+          answers: [
+            { text: "Business Manager", score: 1 },
+            { text: "Humanities & Moral Sciences", score: 0 },
+          ],
+          typeOfQuestion: "Management",
+        },
+        {
+          question: "What is the primary focus of Computer Science?",
+          answers: [
+            { text: "Medical", score: 0 },
+            { text: "Software development and programming", score: 1 },
+          ],
+          typeOfQuestion: "Computer Science",
+        },
+        {
+          question:
+            "Which career path involves designing and developing computer systems?",
+          answers: [
+            { text: "Home Science", score: 0 },
+            { text: "Software Engineer", score: 1 },
+          ],
+          typeOfQuestion: "Computer Science",
+        },
+        {
+          question: "What is the focus of Physical Education?",
+          answers: [
+            {
+              text: "Promoting health and fitness through physical activities",
+              score: 1,
+            },
+            { text: "Maritime activities and navigation", score: 0 },
+          ],
+          typeOfQuestion: "Physical Education",
+        },
+        {
+          question: "Which profession is associated with Physical Education?",
+          answers: [
+            { text: "Architecture", score: 0 },
+            { text: "Physical Education Instructor", score: 1 },
+          ],
+          typeOfQuestion: "Physical Education",
+        },
+      ];
+
+      const questionElement = document.getElementById("question");
+      const answerButtons = document.getElementById("answer-buttons");
+      const nextButton = document.getElementById("next-btn");
+
+      resultButton.style.display = "none";
+      let currentQuestionIndex = 0;
+      let scores = {};
+      let totalScore = 0;
+
+      function startQuiz() {
+        currentQuestionIndex = 0;
+        scores = {};
+        totalScore = 0;
+        nextButton.innerHTML = "Next";
+        showQuestion();
+      }
+
+      function showQuestion() {
+        resetState();
+        let currentQuestion = questions[currentQuestionIndex];
+        let questionNo = currentQuestionIndex + 1;
+        questionElement.innerHTML =
+          questionNo + ". " + currentQuestion.question;
+
+        currentQuestion.answers.forEach((answer) => {
+          const button = document.createElement("button");
+          button.innerHTML = answer.text;
+          button.classList.add("btn");
+          answerButtons.appendChild(button);
+
+          button.addEventListener("click", () => selectAnswer(answer.score));
+        });
+      }
+
+      function resetState() {
+        nextButton.style.display = "none";
+        while (answerButtons.firstChild) {
+          answerButtons.removeChild(answerButtons.firstChild);
+        }
+      }
+
+      function selectAnswer(score) {
+        const selectedBtn = event.target;
+        const isCorrect = selectedBtn.dataset.correct === "true";
+        let currentQuestion = questions[currentQuestionIndex];
+        // Change the color of the selected option
+        console.log(selectedBtn);
+        selectedBtn.classList.add("correct");
+
+        // Disable all buttons after selecting an option
+        Array.from(answerButtons.children).forEach((button) => {
+          button.disabled = true;
+        });
+
+        // Save the score
+        scores[currentQuestion.typeOfQuestion] =
+          scores[currentQuestion.typeOfQuestion] || 0;
+        scores[currentQuestion.typeOfQuestion] += score;
+        totalScore += score;
+
+        nextButton.style.display = "block";
+      }
+
+      function showScore() {
+        resetState();
+        let scoreMessage = "Your Scores:<br><br>";
+
+        for (const type in scores) {
+          if (scores.hasOwnProperty(type)) {
+            scoreMessage += `${type}: ${scores[type]}<br>`;
+          }
+        }
+
+        scoreMessage += `Total Score: ${totalScore}<br>`;
+        questionElement.innerHTML = scoreMessage;
+
+        resultButton.style.display = "block";
+        // Save scores to local storage
+        saveScoresToLocalStorage();
+      }
+
+      function saveScoresToLocalStorage() {
+        const scoresObject = {
+          Science: scores["Science"] || 0,
+          Commerce: scores["Commerce"] || 0,
+          "Humanities & Moral Sciences":
+            scores["Humanities & Moral Sciences"] || 0,
+          "Home Science": scores["Home Science"] || 0,
+          "Fine Arts & Design": scores["Fine Arts & Design"] || 0,
+          Engineering: scores["Engineering"] || 0,
+          Medical: scores["Medical"] || 0,
+          Architecture: scores["Architecture"] || 0,
+          "Pure Science (B.SC)": scores["Pure Science (B.SC)"] || 0,
+          "Bio Technology": scores["Bio Technology"] || 0,
+          Agriculture: scores["Agriculture"] || 0,
+          "Hotel Management": scores["Hotel Management"] || 0,
+          Law: scores["Law"] || 0,
+          Journalism: scores["Journalism"] || 0,
+          "Mass Communication": scores["Mass Communication"] || 0,
+          "Merchant Navy": scores["Merchant Navy"] || 0,
+          Defense: scores["Defense"] || 0,
+          Management: scores["Management"] || 0,
+          "Computer Science": scores["Computer Science"] || 0,
+          "Physical Education": scores["Physical Education"] || 0,
+
+          "Total Score": totalScore,
+        };
+
+        localStorage.setItem(
+          "interestTestScores",
+          JSON.stringify(scoresObject)
+        );
+      }
+      function handleNextButton() {
+        currentQuestionIndex++;
+        if (currentQuestionIndex < questions.length) {
+          showQuestion();
+        } else {
+          showScore();
+        }
+      }
+
+      nextButton.addEventListener("click", () => {
+        if (currentQuestionIndex < questions.length) {
+          handleNextButton();
+        } else {
+          startQuiz();
+        }
+      });
+
+      startQuiz();
     </script>
   </body>
 </html>
