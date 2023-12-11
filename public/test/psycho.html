@@ -9,6 +9,87 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.css"
       rel="stylesheet"
     />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+
+      body {
+        background-color: #f8f8f8;
+      }
+      .app {
+        background: rgb(255, 255, 255);
+        width: 90%;
+        max-width: 600px;
+        border-radius: 10px;
+        padding: 30px;
+        border: 0px solid rgb(177, 177, 177);
+        box-shadow: -1px 10px 20px 0px rgba(197, 208, 216, 0.2);
+      }
+
+      h1 {
+        color: #001e4d;
+        padding: 10px;
+        text-align: center;
+      }
+
+      .quiz {
+        padding: 20px 0;
+      }
+
+      .quiz h2 {
+        font-size: 18px;
+        color: #353535;
+        font-weight: 600;
+        margin-bottom: 30px;
+      }
+
+      .btn {
+        background-color: #e4e0e0;
+        color: #222;
+        font-weight: 500;
+        width: 100%;
+        border: 0px solid #222;
+        padding: 15px;
+        margin: 10px 0;
+        text-align: left;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+
+      .btn:hover:not(:disabled) {
+        background-color: #a7a5a5;
+      }
+
+      .btn:disabled {
+        cursor: no-drop;
+      }
+
+      #next-btn {
+        background-color: #001e4d;
+        color: #fff;
+        font-weight: 500;
+        widows: 150px;
+        border: 0;
+        padding: 15px 30px;
+        margin: 20px auto 0;
+        border-radius: 4px;
+        cursor: pointer;
+        display: none;
+      }
+
+      .correct {
+        background-color: #a7a5a5;
+      }
+
+      .incorrect {
+        background-color: #ff9393;
+      }
+    </style>
   </head>
   <body>
     <header class="text-gray-600 body-font">
@@ -165,7 +246,37 @@
       </nav>
     </header>
 
-    <h1>Psycho test</h1>
+    <div
+      class="showIfLogin mt-[100px] flex flex-col justify-center items-center lg:items-start lg:flex-row lg:justify-around"
+    >
+      <div class="">
+        <h1
+          class="mb-1 m-5 text-4xl font-bold leading-none tracking-tight text-gray-800 md:text-2xl lg:text-3xl"
+        >
+          Psychometric Test
+        </h1>
+        <img src="../img/apti.png" alt="" />
+      </div>
+      <div class="app">
+        <div class="quiz">
+          <h2 id="question">Question here</h2>
+          <div id="answer-buttons">
+            <button class="btn">Opetion 1</button>
+            <button class="btn">Opetion 2</button>
+            <button class="btn">Opetion 3</button>
+          </div>
+          <button id="next-btn">Next</button>
+          <a href="../test/result.html">
+            <button
+              id="resultButton"
+              class="text-white bg-[#001e4d] hover:bg-[#05265a] focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-[#001e4d] dark:hover:bg-[#05265a]"
+            >
+              Show Me Results
+            </button>
+          </a>
+        </div>
+      </div>
+    </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js"></script>
     <script>
@@ -174,11 +285,379 @@
         if (localStorage.getItem("login") === "true") {
           document.getElementById("loggedInContent").style.display = "block";
           document.getElementById("notLoggedInContent").style.display = "none";
+          document.querySelector(".showIfLogin").style.display = "flex";
         } else {
           document.getElementById("loggedInContent").style.display = "none";
           document.getElementById("notLoggedInContent").style.display = "block";
+          document.querySelector(".showIfLogin").style.display = "none";
         }
       });
+    </script>
+
+    <!-- Quiz script -->
+    <script>
+      const questions = [
+        {
+          question:
+            "Do you enjoy exploring new subjects and acquiring information just for the sake of learning?",
+          answers: [
+            { text: "Yes", score: 2 },
+            { text: "No", score: 0 },
+            { text: "May be", score: 1 },
+          ],
+          typeOfQuestion: "Knowledge Orientation",
+        },
+        {
+          question:
+            "Would you consider yourself someone who enjoys reading books, articles, or watching documentaries to gain knowledge?",
+          answers: [
+            { text: "Yes", score: 2 },
+            { text: "No", score: 0 },
+            { text: "May be", score: 1 },
+          ],
+          typeOfQuestion: "Knowledge Orientation",
+        },
+        {
+          question:
+            "Is participating in academic competitions or quizzes something you find interesting?",
+          answers: [
+            { text: "Yes", score: 2 },
+            { text: "No", score: 0 },
+            { text: "May be", score: 1 },
+          ],
+          typeOfQuestion: "Knowledge Orientation",
+        },
+        {
+          question:
+            "Do you often find yourself researching topics beyond what is required for your school assignments?",
+          answers: [
+            { text: "Yes", score: 2 },
+            { text: "No", score: 0 },
+            { text: "May be", score: 1 },
+          ],
+          typeOfQuestion: "Knowledge Orientation",
+        },
+        {
+          question:
+            "Do you believe that continuous learning is essential for personal growth and success?",
+          answers: [
+            { text: "Yes", score: 2 },
+            { text: "No", score: 0 },
+            { text: "May be", score: 1 },
+          ],
+          typeOfQuestion: "Knowledge Orientation",
+        },
+        {
+          question:
+            "Are you inclined towards hands-on activities and enjoy learning through practical experiences?",
+          answers: [
+            { text: "Yes", score: 2 },
+            { text: "No", score: 0 },
+            { text: "May be", score: 1 },
+          ],
+          typeOfQuestion: "Practical Orientation",
+        },
+        {
+          question:
+            "Do you prefer learning skills that have direct applications in real-life situations?",
+          answers: [
+            { text: "Yes", score: 2 },
+            { text: "No", score: 0 },
+            { text: "May be", score: 1 },
+          ],
+          typeOfQuestion: "Practical Orientation",
+        },
+        {
+          question:
+            "Are you drawn to activities that involve problem-solving and finding practical solutions?",
+          answers: [
+            { text: "Yes", score: 2 },
+            { text: "No", score: 0 },
+            { text: "May be", score: 1 },
+          ],
+          typeOfQuestion: "Practical Orientation",
+        },
+        {
+          question:
+            "Would you rather engage in projects that require physical effort and tangible results?",
+          answers: [
+            { text: "Yes", score: 2 },
+            { text: "No", score: 0 },
+            { text: "May be", score: 1 },
+          ],
+          typeOfQuestion: "Practical Orientation",
+        },
+        {
+          question:
+            "Do you believe in the importance of gaining practical skills alongside theoretical knowledge?",
+          answers: [
+            { text: "Yes", score: 2 },
+            { text: "No", score: 0 },
+            { text: "May be", score: 1 },
+          ],
+          typeOfQuestion: "Practical Orientation",
+        },
+        {
+          question:
+            "Do you enjoy expressing yourself through creative outlets such as drawing, painting, or other forms of art?",
+          answers: [
+            { text: "Yes", score: 2 },
+            { text: "No", score: 0 },
+            { text: "May be", score: 1 },
+          ],
+          typeOfQuestion: "Artistic Orientation",
+        },
+        {
+          question:
+            "Is participating in drama, music, or dance something you find fulfilling?",
+          answers: [
+            { text: "Yes", score: 2 },
+            { text: "No", score: 0 },
+            { text: "May be", score: 1 },
+          ],
+          typeOfQuestion: "Artistic Orientation",
+        },
+        {
+          question:
+            "Do you often find yourself daydreaming or imagining new ideas and concepts?",
+          answers: [
+            { text: "Yes", score: 2 },
+            { text: "No", score: 0 },
+            { text: "May be", score: 1 },
+          ],
+          typeOfQuestion: "Artistic Orientation",
+        },
+        {
+          question:
+            "Are you drawn to activities that allow you to explore and express your emotions and thoughts?",
+          answers: [
+            { text: "Yes", score: 2 },
+            { text: "No", score: 0 },
+            { text: "May be", score: 1 },
+          ],
+          typeOfQuestion: "Artistic Orientation",
+        },
+        {
+          question:
+            "Do you believe that creativity is an important aspect of personal development?",
+          answers: [
+            { text: "Yes", score: 2 },
+            { text: "No", score: 0 },
+            { text: "May be", score: 1 },
+          ],
+          typeOfQuestion: "Artistic Orientation",
+        },
+        {
+          question:
+            "Do you enjoy spending time with a diverse group of people and making new friends?",
+          answers: [
+            { text: "Yes", score: 2 },
+            { text: "No", score: 0 },
+            { text: "May be", score: 1 },
+          ],
+          typeOfQuestion: "Social Orientation",
+        },
+        {
+          question:
+            "Are you interested in participating in community service or volunteer work?",
+          answers: [
+            { text: "Yes", score: 2 },
+            { text: "No", score: 0 },
+            { text: "May be", score: 1 },
+          ],
+          typeOfQuestion: "Social Orientation",
+        },
+        {
+          question:
+            "Do you find social events and gatherings energizing and enjoyable?",
+          answers: [
+            { text: "Yes", score: 2 },
+            { text: "No", score: 0 },
+            { text: "May be", score: 1 },
+          ],
+          typeOfQuestion: "Social Orientation",
+        },
+        {
+          question:
+            "Are you interested in understanding different cultures and perspectives through social interactions?",
+          answers: [
+            { text: "Yes", score: 2 },
+            { text: "No", score: 0 },
+            { text: "May be", score: 1 },
+          ],
+          typeOfQuestion: "Social Orientation",
+        },
+        {
+          question:
+            "Do you believe that building strong social connections is important for personal well-being?",
+          answers: [
+            { text: "Yes", score: 2 },
+            { text: "No", score: 0 },
+            { text: "May be", score: 1 },
+          ],
+          typeOfQuestion: "Social Orientation",
+        },
+        {
+          question:
+            "Do you enjoy taking on leadership roles and responsibilities in group activities?",
+          answers: [
+            { text: "Yes", score: 2 },
+            { text: "No", score: 0 },
+            { text: "May be", score: 1 },
+          ],
+          typeOfQuestion: "Power Orientation",
+        },
+        {
+          question:
+            "Are you motivated by the idea of achieving success and influencing others positively?",
+          answers: [
+            { text: "Yes", score: 2 },
+            { text: "No", score: 0 },
+            { text: "May be", score: 1 },
+          ],
+          typeOfQuestion: "Power Orientation",
+        },
+        {
+          question:
+            "Do you find yourself naturally gravitating towards decision-making positions in team projects?",
+          answers: [
+            { text: "Yes", score: 2 },
+            { text: "No", score: 0 },
+            { text: "May be", score: 1 },
+          ],
+          typeOfQuestion: "Power Orientation",
+        },
+        {
+          question:
+            "Are you interested in learning about how power dynamics shape relationships and societies?",
+          answers: [
+            { text: "Yes", score: 2 },
+            { text: "No", score: 0 },
+            { text: "May be", score: 1 },
+          ],
+          typeOfQuestion: "Power Orientation",
+        },
+        {
+          question:
+            "Do you believe that having influence and authority can be used for positive change?",
+          answers: [
+            { text: "Yes", score: 2 },
+            { text: "No", score: 0 },
+            { text: "May be", score: 1 },
+          ],
+          typeOfQuestion: "Power Orientation",
+        },
+      ];
+
+      const questionElement = document.getElementById("question");
+      const answerButtons = document.getElementById("answer-buttons");
+      const nextButton = document.getElementById("next-btn");
+
+      resultButton.style.display = "none";
+      let currentQuestionIndex = 0;
+      let scores = {};
+      let totalScore = 0;
+
+      function startQuiz() {
+        currentQuestionIndex = 0;
+        scores = {};
+        totalScore = 0;
+        nextButton.innerHTML = "Next";
+        showQuestion();
+      }
+
+      function showQuestion() {
+        resetState();
+        let currentQuestion = questions[currentQuestionIndex];
+        let questionNo = currentQuestionIndex + 1;
+        questionElement.innerHTML =
+          questionNo + ". " + currentQuestion.question;
+
+        currentQuestion.answers.forEach((answer) => {
+          const button = document.createElement("button");
+          button.innerHTML = answer.text;
+          button.classList.add("btn");
+          answerButtons.appendChild(button);
+
+          button.addEventListener("click", () => selectAnswer(answer.score));
+        });
+      }
+
+      function resetState() {
+        nextButton.style.display = "none";
+        while (answerButtons.firstChild) {
+          answerButtons.removeChild(answerButtons.firstChild);
+        }
+      }
+
+      function selectAnswer(score) {
+        const selectedBtn = event.target;
+        const isCorrect = selectedBtn.dataset.correct === "true";
+        let currentQuestion = questions[currentQuestionIndex];
+        // Change the color of the selected option
+        console.log(selectedBtn);
+        selectedBtn.classList.add("correct");
+
+        // Disable all buttons after selecting an option
+        Array.from(answerButtons.children).forEach((button) => {
+          button.disabled = true;
+        });
+
+        // Save the score
+        scores[currentQuestion.typeOfQuestion] =
+          scores[currentQuestion.typeOfQuestion] || 0;
+        scores[currentQuestion.typeOfQuestion] += score;
+        totalScore += score;
+
+        nextButton.style.display = "block";
+      }
+
+      function showScore() {
+        resetState();
+        let scoreMessage = "Your Scores:<br><br>";
+
+        for (const type in scores) {
+          if (scores.hasOwnProperty(type)) {
+            scoreMessage += `${type}: ${scores[type]}<br>`;
+          }
+        }
+
+        scoreMessage += `Total Score: ${totalScore}<br>`;
+        questionElement.innerHTML = scoreMessage;
+
+        resultButton.style.display = "block";
+        // Save scores to local storage
+        saveScoresToLocalStorage();
+      }
+
+      function saveScoresToLocalStorage() {
+        const scoresObject = {
+          "Knowledge Orientation": scores["Knowledge Orientation"] || 0,
+          Programming: scores["Programming"] || 0,
+          "JavaScript Concepts": scores["JavaScript Concepts"] || 0,
+          "Total Score": totalScore,
+        };
+
+        localStorage.setItem("psychoTestScores", JSON.stringify(scoresObject));
+      }
+      function handleNextButton() {
+        currentQuestionIndex++;
+        if (currentQuestionIndex < questions.length) {
+          showQuestion();
+        } else {
+          showScore();
+        }
+      }
+
+      nextButton.addEventListener("click", () => {
+        if (currentQuestionIndex < questions.length) {
+          handleNextButton();
+        } else {
+          startQuiz();
+        }
+      });
+
+      startQuiz();
     </script>
   </body>
 </html>
