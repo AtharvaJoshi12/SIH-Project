@@ -249,11 +249,11 @@
         <h1
           class="mb-1 m-5 text-4xl font-bold leading-none tracking-tight text-gray-800 md:text-2xl lg:text-3xl"
         >
-          Psychometric Test
+          Hobbies | Personality
         </h1>
-        <img src="../img/psycho.png" alt="" />
+        <img src="../img/apti.png" alt="" />
       </div>
-      <div class="app mt-10">
+      <div class="app">
         <div class="quiz">
           <h2 id="question">Question here</h2>
           <div id="answer-buttons">
@@ -591,6 +591,7 @@
         const isCorrect = selectedBtn.dataset.correct === "true";
         let currentQuestion = questions[currentQuestionIndex];
         // Change the color of the selected option
+        console.log(selectedBtn);
         selectedBtn.classList.add("correct");
 
         // Disable all buttons after selecting an option

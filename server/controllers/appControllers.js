@@ -51,6 +51,10 @@ exports.interestPage = async (req, res) => {
   const htmlFilePath = path.join(__dirname, "../../public/test/interest.html");
   res.sendFile(htmlFilePath);
 };
+exports.hobbiesPage = async (req, res) => {
+  const htmlFilePath = path.join(__dirname, "../../public/test/hobbies.html");
+  res.sendFile(htmlFilePath);
+};
 
 exports.resultPage = async (req, res) => {
   const htmlFilePath = path.join(__dirname, "../../public/test/result.html");

@@ -12,6 +12,7 @@ router.get("/test", appControllers.testPage);
 router.get("/test/psycho", appControllers.psychoPage);
 router.get("/test/aptitude", appControllers.aptitudePage);
 router.get("/test/interest", appControllers.interestPage);
+router.get("/test/hobbies", appControllers.hobbiesPage);
 router.get("/test/result", appControllers.resultPage);
 
 router.post("/studentRegister", appControllers.studentRegisterAPI);
