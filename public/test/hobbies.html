@@ -251,15 +251,19 @@
         >
           Hobbies | Personality
         </h1>
-        <img src="../img/apti.png" alt="" />
+        <img
+          src="../img/hobbies.png"
+          class="rounded-lg w-[300px] lg:w-[400px] m-auto"
+          alt=""
+        />
       </div>
-      <div class="app">
+      <div class="app mt-10">
         <div class="quiz">
           <h2 id="question">Question here</h2>
           <div id="answer-buttons">
-            <button class="btn">Opetion 1</button>
-            <button class="btn">Opetion 2</button>
-            <button class="btn">Opetion 3</button>
+            <button class="btn">Option 1</button>
+            <button class="btn">Option 2</button>
+            <button class="btn">Option 3</button>
           </div>
           <button id="next-btn">Next</button>
           <a href="../test/result.html">
@@ -294,254 +298,275 @@
     <script>
       const questions = [
         {
-          question:
-            "Do you enjoy exploring new subjects and acquiring information just for the sake of learning?",
+          question: "Do you enjoy reading books or articles in your free time?",
           answers: [
             { text: "Yes", score: 2 },
             { text: "No", score: 0 },
             { text: "May be", score: 1 },
           ],
-          typeOfQuestion: "Knowledge Orientation",
+          typeOfQuestion: "Reading/Writing",
         },
         {
           question:
-            "Would you consider yourself someone who enjoys reading books, articles, or watching documentaries to gain knowledge?",
+            "Would you be interested in expressing your thoughts through writing, such as creating stories or articles?",
           answers: [
             { text: "Yes", score: 2 },
             { text: "No", score: 0 },
             { text: "May be", score: 1 },
           ],
-          typeOfQuestion: "Knowledge Orientation",
+          typeOfQuestion: "Reading/Writing",
         },
         {
           question:
-            "Is participating in academic competitions or quizzes something you find interesting?",
+            "Are you curious about how software and applications are created?",
           answers: [
             { text: "Yes", score: 2 },
             { text: "No", score: 0 },
             { text: "May be", score: 1 },
           ],
-          typeOfQuestion: "Knowledge Orientation",
+          typeOfQuestion: "Coding/Programming",
+        },
+        {
+          question: "Do you find joy in solving logical problems or puzzles?",
+          answers: [
+            { text: "Yes", score: 2 },
+            { text: "No", score: 0 },
+            { text: "May be", score: 1 },
+          ],
+          typeOfQuestion: "Coding/Programming",
+        },
+        {
+          question: "Do you enjoy capturing moments through photos?",
+          answers: [
+            { text: "Yes", score: 2 },
+            { text: "No", score: 0 },
+            { text: "May be", score: 1 },
+          ],
+          typeOfQuestion: "Photography",
         },
         {
           question:
-            "Do you often find yourself researching topics beyond what is required for your school assignments?",
+            "Would you be interested in learning about photo editing techniques?",
           answers: [
             { text: "Yes", score: 2 },
             { text: "No", score: 0 },
             { text: "May be", score: 1 },
           ],
-          typeOfQuestion: "Knowledge Orientation",
+          typeOfQuestion: "Photography",
         },
         {
           question:
-            "Do you believe that continuous learning is essential for personal growth and success?",
+            "Would you like to explore different art mediums, such as painting or sculpture?",
           answers: [
             { text: "Yes", score: 2 },
             { text: "No", score: 0 },
             { text: "May be", score: 1 },
           ],
-          typeOfQuestion: "Knowledge Orientation",
+          typeOfQuestion: "Art and Drawing",
         },
         {
           question:
-            "Are you inclined towards hands-on activities and enjoy learning through practical experiences?",
+            "Do you find satisfaction in expressing yourself through drawings or sketches?",
           answers: [
             { text: "Yes", score: 2 },
             { text: "No", score: 0 },
             { text: "May be", score: 1 },
           ],
-          typeOfQuestion: "Practical Orientation",
+          typeOfQuestion: "Art and Drawing",
         },
         {
           question:
-            "Do you prefer learning skills that have direct applications in real-life situations?",
+            "Do you have an interest in learning to play a musical instrument?",
           answers: [
             { text: "Yes", score: 2 },
             { text: "No", score: 0 },
             { text: "May be", score: 1 },
           ],
-          typeOfQuestion: "Practical Orientation",
+          typeOfQuestion: "Music",
         },
         {
           question:
-            "Are you drawn to activities that involve problem-solving and finding practical solutions?",
+            "Would you enjoy singing or participating in a school choir?",
           answers: [
             { text: "Yes", score: 2 },
             { text: "No", score: 0 },
             { text: "May be", score: 1 },
           ],
-          typeOfQuestion: "Practical Orientation",
+          typeOfQuestion: "Music",
         },
         {
           question:
-            "Would you rather engage in projects that require physical effort and tangible results?",
+            "Are you fascinated by science and enjoy conducting experiments?",
           answers: [
             { text: "Yes", score: 2 },
             { text: "No", score: 0 },
             { text: "May be", score: 1 },
           ],
-          typeOfQuestion: "Practical Orientation",
+          typeOfQuestion: "Science and Robotics",
         },
         {
           question:
-            "Do you believe in the importance of gaining practical skills alongside theoretical knowledge?",
+            "Would you like to explore the world of robotics and STEM activities?",
           answers: [
             { text: "Yes", score: 2 },
             { text: "No", score: 0 },
             { text: "May be", score: 1 },
           ],
-          typeOfQuestion: "Practical Orientation",
+          typeOfQuestion: "Science and Robotics",
         },
         {
           question:
-            "Do you enjoy expressing yourself through creative outlets such as drawing, painting, or other forms of art?",
+            "Do you enjoy participating in outdoor sports like soccer or basketball?",
           answers: [
             { text: "Yes", score: 2 },
             { text: "No", score: 0 },
             { text: "May be", score: 1 },
           ],
-          typeOfQuestion: "Artistic Orientation",
+          typeOfQuestion: "Outdoor Activities",
+        },
+        {
+          question: "Are you interested in activities like hiking or camping?",
+          answers: [
+            { text: "Yes", score: 2 },
+            { text: "No", score: 0 },
+            { text: "May be", score: 1 },
+          ],
+          typeOfQuestion: "Outdoor Activities",
         },
         {
           question:
-            "Is participating in drama, music, or dance something you find fulfilling?",
+            "Are you curious about virtual reality experiences and technologies?",
           answers: [
             { text: "Yes", score: 2 },
             { text: "No", score: 0 },
             { text: "May be", score: 1 },
           ],
-          typeOfQuestion: "Artistic Orientation",
+          typeOfQuestion: "Technology",
         },
         {
           question:
-            "Do you often find yourself daydreaming or imagining new ideas and concepts?",
+            "Would you be interested in creating your own apps or designing games?",
           answers: [
             { text: "Yes", score: 2 },
             { text: "No", score: 0 },
             { text: "May be", score: 1 },
           ],
-          typeOfQuestion: "Artistic Orientation",
+          typeOfQuestion: "Technology",
+        },
+        {
+          question: "Do you enjoy crafting creative and imaginative stories?",
+          answers: [
+            { text: "Yes", score: 2 },
+            { text: "No", score: 0 },
+            { text: "May be", score: 1 },
+          ],
+          typeOfQuestion: "Creative Writing",
         },
         {
           question:
-            "Are you drawn to activities that allow you to explore and express your emotions and thoughts?",
+            "Would you be interested in participating in creative writing workshops or clubs?",
           answers: [
             { text: "Yes", score: 2 },
             { text: "No", score: 0 },
             { text: "May be", score: 1 },
           ],
-          typeOfQuestion: "Artistic Orientation",
+          typeOfQuestion: "Creative Writing",
+        },
+        {
+          question: "Do you find joy in taking care of plants and gardening?",
+          answers: [
+            { text: "Yes", score: 2 },
+            { text: "No", score: 0 },
+            { text: "May be", score: 1 },
+          ],
+          typeOfQuestion: "Gardening",
         },
         {
           question:
-            "Do you believe that creativity is an important aspect of personal development?",
+            "Would you be interested in joining a school gardening club or learning more about plant care?",
           answers: [
             { text: "Yes", score: 2 },
             { text: "No", score: 0 },
             { text: "May be", score: 1 },
           ],
-          typeOfQuestion: "Artistic Orientation",
+          typeOfQuestion: "Gardening",
+        },
+        {
+          question: "Are you interested in strategic games like chess?",
+          answers: [
+            { text: "Yes", score: 2 },
+            { text: "No", score: 0 },
+            { text: "May be", score: 1 },
+          ],
+          typeOfQuestion: "Chess and Strategy Games",
         },
         {
           question:
-            "Do you enjoy spending time with a diverse group of people and making new friends?",
+            "Do you enjoy participating in chess tournaments or strategy game clubs?",
           answers: [
             { text: "Yes", score: 2 },
             { text: "No", score: 0 },
             { text: "May be", score: 1 },
           ],
-          typeOfQuestion: "Social Orientation",
+          typeOfQuestion: "Chess and Strategy Games",
         },
         {
           question:
-            "Are you interested in participating in community service or volunteer work?",
+            "Would you be interested in starting a collection of stamps, coins, or books?",
           answers: [
             { text: "Yes", score: 2 },
             { text: "No", score: 0 },
             { text: "May be", score: 1 },
           ],
-          typeOfQuestion: "Social Orientation",
+          typeOfQuestion: "Collecting",
+        },
+        {
+          question: "Do you enjoy learning about antiques and collectibles?",
+          answers: [
+            { text: "Yes", score: 2 },
+            { text: "No", score: 0 },
+            { text: "May be", score: 1 },
+          ],
+          typeOfQuestion: "Collecting",
+        },
+        {
+          question: "Do you enjoy trying out new cooking or baking recipes?",
+          answers: [
+            { text: "Yes", score: 2 },
+            { text: "No", score: 0 },
+            { text: "May be", score: 1 },
+          ],
+          typeOfQuestion: "Culinary Arts",
         },
         {
           question:
-            "Do you find social events and gatherings energizing and enjoyable?",
+            "Would you be interested in exploring culinary classes or workshops?",
           answers: [
             { text: "Yes", score: 2 },
             { text: "No", score: 0 },
             { text: "May be", score: 1 },
           ],
-          typeOfQuestion: "Social Orientation",
+          typeOfQuestion: "Culinary Arts",
         },
         {
           question:
-            "Are you interested in understanding different cultures and perspectives through social interactions?",
+            "Do you enjoy participating in community service or volunteering activities?",
           answers: [
             { text: "Yes", score: 2 },
             { text: "No", score: 0 },
             { text: "May be", score: 1 },
           ],
-          typeOfQuestion: "Social Orientation",
+          typeOfQuestion: "Social Activities and Volunteering",
         },
         {
           question:
-            "Do you believe that building strong social connections is important for personal well-being?",
+            "Are you interested in joining clubs focused on social causes?",
           answers: [
             { text: "Yes", score: 2 },
             { text: "No", score: 0 },
             { text: "May be", score: 1 },
           ],
-          typeOfQuestion: "Social Orientation",
-        },
-        {
-          question:
-            "Do you enjoy taking on leadership roles and responsibilities in group activities?",
-          answers: [
-            { text: "Yes", score: 2 },
-            { text: "No", score: 0 },
-            { text: "May be", score: 1 },
-          ],
-          typeOfQuestion: "Power Orientation",
-        },
-        {
-          question:
-            "Are you motivated by the idea of achieving success and influencing others positively?",
-          answers: [
-            { text: "Yes", score: 2 },
-            { text: "No", score: 0 },
-            { text: "May be", score: 1 },
-          ],
-          typeOfQuestion: "Power Orientation",
-        },
-        {
-          question:
-            "Do you find yourself naturally gravitating towards decision-making positions in team projects?",
-          answers: [
-            { text: "Yes", score: 2 },
-            { text: "No", score: 0 },
-            { text: "May be", score: 1 },
-          ],
-          typeOfQuestion: "Power Orientation",
-        },
-        {
-          question:
-            "Are you interested in learning about how power dynamics shape relationships and societies?",
-          answers: [
-            { text: "Yes", score: 2 },
-            { text: "No", score: 0 },
-            { text: "May be", score: 1 },
-          ],
-          typeOfQuestion: "Power Orientation",
-        },
-        {
-          question:
-            "Do you believe that having influence and authority can be used for positive change?",
-          answers: [
-            { text: "Yes", score: 2 },
-            { text: "No", score: 0 },
-            { text: "May be", score: 1 },
-          ],
-          typeOfQuestion: "Power Orientation",
+          typeOfQuestion: "Social Activities and Volunteering",
         },
       ];
 
@@ -628,13 +653,25 @@
 
       function saveScoresToLocalStorage() {
         const scoresObject = {
-          "Knowledge Orientation": scores["Knowledge Orientation"] || 0,
-          Programming: scores["Programming"] || 0,
-          "JavaScript Concepts": scores["JavaScript Concepts"] || 0,
+          "Reading/Writing": scores["Reading/Writing"] || 0,
+          "Coding/Programming": scores["Coding/Programming"] || 0,
+          Photography: scores["Photography"] || 0,
+          "Art and Drawing": scores["Art and Drawing"] || 0,
+          Music: scores["Music"] || 0,
+          "Science and Robotics": scores["Science and Robotics"] || 0,
+          "Outdoor Activities": scores["Outdoor Activities"] || 0,
+          Technology: scores["Technology"] || 0,
+          "Creative Writing": scores["Creative Writing"] || 0,
+          Gardening: scores["Gardening"] || 0,
+          "Chess and Strategy Games": scores["Chess and Strategy Games"] || 0,
+          Collecting: scores["Collecting"] || 0,
+          "Culinary Arts": scores["Culinary Arts"] || 0,
+          "Social Activities and Volunteering":
+            scores["Social Activities and Volunteering"] || 0,
           "Total Score": totalScore,
         };
 
-        localStorage.setItem("psychoTestScores", JSON.stringify(scoresObject));
+        localStorage.setItem("hobbiesTestScores", JSON.stringify(scoresObject));
       }
       function handleNextButton() {
         currentQuestionIndex++;
