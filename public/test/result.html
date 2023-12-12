@@ -166,118 +166,99 @@
     </header>
 
     <div class="myContainer">
-      <div class="mt-[100px] flex justify-center">
+      <h1
+        class="mb-10 mt-[100px] text-center text-4xl font-bold leading-none tracking-tight text-gray-800 md:text-2xl lg:text-3xl"
+      >
+        Detailed Result
+      </h1>
+      <hr class="w-[80%] m-auto" />
+
+      <div class="psychoDiv mt-[100px]">
         <h1
-          class="mb-10 text-4xl font-bold leading-none tracking-tight text-gray-800 md:text-2xl lg:text-3xl"
+          class="mb-10 text-center text-4xl font-bold leading-none tracking-tight text-gray-800 md:text-2xl lg:text-3xl"
         >
-          Detailed Result
+          Psychometric Test
         </h1>
-      </div>
-      <div class="graph result flex justify-center m-10 mt-[10px]">
-        <div
-          class="max-w-[500px] w-[100%] bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6"
-        >
-          <h5
-            class="text-2xl text-center font-bold leading-none text-gray-900 dark:text-white me-1"
-          >
-            Aptitude Test Result
-          </h5>
 
-          <!-- Line Chart -->
-          <div class="py-6" id="pie-chart"></div>
-
+        <div class="graph flex justify-center">
           <div
-            class="grid grid-cols-1 items-center border-gray-200 border-t dark:border-gray-700 justify-between"
-          ></div>
+            class="max-w-md w-full bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6"
+          >
+            <div id="column-chart"></div>
+            <div
+              class="grid grid-cols-1 items-center border-gray-200 border-t dark:border-gray-700 justify-between"
+            ></div>
+          </div>
         </div>
-
-        <script>
-          // ApexCharts options and config
-          let totalAptiScore = localStorage.getItem("totalAptiScore");
-          totalAptiScore = parseInt(totalAptiScore, 10);
-          let totalQuestion = 5;
-          let correct = totalAptiScore;
-          let incorrect = totalQuestion - totalAptiScore;
-
-          window.addEventListener("load", function () {
-            const getChartOptions = () => {
-              return {
-                series: [
-                  parseInt(localStorage.getItem("totalAptiScore"), 10),
-                  totalQuestion -
-                    parseInt(localStorage.getItem("totalAptiScore"), 10),
-                ],
-                colors: ["#35df6b", "#df3535"],
-                chart: {
-                  height: 420,
-                  width: "100%",
-                  type: "pie",
-                },
-                stroke: {
-                  colors: ["white"],
-                  lineCap: "",
-                },
-                plotOptions: {
-                  pie: {
-                    labels: {
-                      show: true,
-                    },
-                    size: "100%",
-                    dataLabels: {
-                      offset: -25,
-                    },
-                  },
-                },
-                labels: ["Correct", "Incorrect"],
-                dataLabels: {
-                  enabled: true,
-                  style: {
-                    fontFamily: "Inter, sans-serif",
-                  },
-                },
-                legend: {
-                  position: "bottom",
-                  fontFamily: "Inter, sans-serif",
-                },
-                yaxis: {
-                  labels: {
-                    formatter: function (value) {
-                      return value;
-                    },
-                  },
-                },
-                xaxis: {
-                  labels: {
-                    formatter: function (value) {
-                      return value;
-                    },
-                  },
-                  axisTicks: {
-                    show: false,
-                  },
-                  axisBorder: {
-                    show: false,
-                  },
-                },
-              };
-            };
-
-            if (
-              document.getElementById("pie-chart") &&
-              typeof ApexCharts !== "undefined"
-            ) {
-              const chart = new ApexCharts(
-                document.getElementById("pie-chart"),
-                getChartOptions()
-              );
-              chart.render();
-            }
-          });
-        </script>
       </div>
-    </div>
 
-    <h1>hi</h1>
+      <div class="hobbieDiv w-full mt-[100px]">
+        <h1
+          class="mb-10 mt-[100px] text-center text-4xl font-bold leading-none tracking-tight text-gray-800 md:text-2xl lg:text-3xl"
+        >
+          Hobbies | Personality
+        </h1>
+        <div class="graph flex justify-center">
+          <div
+            class="max-w-[1200px] w-full bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6"
+          >
+            <div id="column-chart-hobbie"></div>
+            <div
+              class="grid grid-cols-1 items-center border-gray-200 border-t dark:border-gray-700 justify-between"
+            ></div>
+          </div>
+        </div>
+      </div>
+
+      <hr class="w-[80%] m-auto" />
+      <div class="aptiDiv mt-[100px]">
+        <h1
+          class="mb-10 mt-[100px] text-center text-4xl font-bold leading-none tracking-tight text-gray-800 md:text-2xl lg:text-3xl"
+        >
+          Aptitude Test Detailed Analysis
+        </h1>
+        <div class="graph result flex justify-center m-10 mt-[10px]">
+          <div
+            class="max-w-[500px] w-[100%] bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6"
+          >
+            <h5
+              class="text-2xl text-center font-bold leading-none text-gray-900 dark:text-white me-1"
+            >
+              Aptitude Test Result
+            </h5>
+
+            <div class="py-6" id="pie-chart"></div>
+
+            <div
+              class="grid grid-cols-1 items-center border-gray-200 border-t dark:border-gray-700 justify-between"
+            ></div>
+          </div>
+        </div>
+      </div>
+      <hr class="w-[80%] m-auto" />
+
+      <div class="interestDiv mt-[100px]">
+        <h1
+          class="mb-10 mt-[100px] text-center text-4xl font-bold leading-none tracking-tight text-gray-800 md:text-2xl lg:text-3xl"
+        >
+          Interest
+        </h1>
+        <div class="graph flex justify-center">
+          <div
+            class="max-w-lg w-full m-4 bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6"
+          >
+            <div id="column-chart-interest"></div>
+            <div
+              class="grid grid-cols-1 items-center border-gray-200 border-t dark:border-gray-700 justify-between"
+            ></div>
+          </div>
+        </div>
+      </div>
+
+      <hr class="w-[80%] m-auto" />
+
+      <hr class="w-[80%] m-auto" />
+    </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
@@ -293,6 +274,525 @@
           document.getElementById("loggedInContent").style.display = "none";
           document.getElementById("notLoggedInContent").style.display = "block";
           document.querySelector(".myContainer").style.display = "none";
+        }
+      });
+    </script>
+
+    <!-- Aptitude Graph Script -->
+    <script>
+      // ApexCharts options and config
+      let totalAptiScore = localStorage.getItem("totalAptiScore");
+      totalAptiScore = parseInt(totalAptiScore, 10);
+      let totalQuestion = 5;
+      let correct = totalAptiScore;
+      let incorrect = totalQuestion - totalAptiScore;
+
+      window.addEventListener("load", function () {
+        const getChartOptions = () => {
+          return {
+            series: [
+              parseInt(localStorage.getItem("totalAptiScore"), 10),
+              totalQuestion -
+                parseInt(localStorage.getItem("totalAptiScore"), 10),
+            ],
+            colors: ["#35df6b", "#df3535"],
+            chart: {
+              height: 420,
+              width: "100%",
+              type: "pie",
+            },
+            stroke: {
+              colors: ["white"],
+              lineCap: "",
+            },
+            plotOptions: {
+              pie: {
+                labels: {
+                  show: true,
+                },
+                size: "100%",
+                dataLabels: {
+                  offset: -25,
+                },
+              },
+            },
+            labels: ["Correct", "Incorrect"],
+            dataLabels: {
+              enabled: true,
+              style: {
+                fontFamily: "Inter, sans-serif",
+              },
+            },
+            legend: {
+              position: "bottom",
+              fontFamily: "Inter, sans-serif",
+            },
+            yaxis: {
+              labels: {
+                formatter: function (value) {
+                  return value;
+                },
+              },
+            },
+            xaxis: {
+              labels: {
+                formatter: function (value) {
+                  return value;
+                },
+              },
+              axisTicks: {
+                show: false,
+              },
+              axisBorder: {
+                show: false,
+              },
+            },
+          };
+        };
+
+        if (
+          document.getElementById("pie-chart") &&
+          typeof ApexCharts !== "undefined"
+        ) {
+          const chart = new ApexCharts(
+            document.getElementById("pie-chart"),
+            getChartOptions()
+          );
+          chart.render();
+        }
+      });
+    </script>
+
+    <!-- Psychometric Test Script -->
+    <script>
+      // Parse the JSON string into a JavaScript object
+      let psychoTestScores = JSON.parse(
+        localStorage.getItem("psychoTestScores")
+      );
+
+      // Access individual scores
+      let knowledgeOrientation = psychoTestScores["Knowledge Orientation"];
+      let practicalOrientation = psychoTestScores["Practical Orientation"];
+      let artisticOrientation = psychoTestScores["Artistic Orientation"];
+      let socialOrientation = psychoTestScores["Social Orientation"];
+      let powerOrientation = psychoTestScores["Power Orientation"];
+      let totalScore = psychoTestScores["Total Score"];
+
+      // ApexCharts options and config
+      window.addEventListener("load", function () {
+        const options = {
+          colors: ["#FDBA8C"],
+          series: [
+            {
+              name: "Interest",
+              color: "#16BDCA",
+              data: [
+                { x: "Knowledge", y: knowledgeOrientation },
+                { x: "Practical", y: practicalOrientation },
+                { x: "Artistic", y: artisticOrientation },
+                { x: "Social", y: socialOrientation },
+                { x: "Power", y: powerOrientation },
+              ],
+            },
+          ],
+          chart: {
+            type: "bar",
+            height: "320px",
+            fontFamily: "Inter, sans-serif",
+            toolbar: {
+              show: false,
+            },
+          },
+          plotOptions: {
+            bar: {
+              horizontal: false,
+              columnWidth: "70%",
+              borderRadiusApplication: "end",
+              borderRadius: 1,
+            },
+          },
+          tooltip: {
+            shared: true,
+            intersect: false,
+            style: {
+              fontFamily: "Inter, sans-serif",
+            },
+          },
+          states: {
+            hover: {
+              filter: {
+                type: "darken",
+                value: 1,
+              },
+            },
+          },
+          stroke: {
+            show: true,
+            width: 0,
+            colors: ["transparent"],
+          },
+          grid: {
+            show: false,
+            strokeDashArray: 4,
+            padding: {
+              left: 2,
+              right: 2,
+              top: -14,
+            },
+          },
+          dataLabels: {
+            enabled: false,
+          },
+          legend: {
+            show: false,
+          },
+          xaxis: {
+            floating: false,
+            labels: {
+              show: true,
+              style: {
+                fontFamily: "Inter, sans-serif",
+                cssClass:
+                  "text-xs font-normal fill-gray-500 dark:fill-gray-400",
+              },
+            },
+            axisBorder: {
+              show: false,
+            },
+            axisTicks: {
+              show: false,
+            },
+          },
+          yaxis: {
+            show: false,
+          },
+          fill: {
+            opacity: 1,
+          },
+        };
+
+        if (
+          document.getElementById("column-chart") &&
+          typeof ApexCharts !== "undefined"
+        ) {
+          const chart = new ApexCharts(
+            document.getElementById("column-chart"),
+            options
+          );
+          chart.render();
+        }
+      });
+    </script>
+
+    <!-- Hobbies Test Script -->
+    <script>
+      // Parse the JSON string into a JavaScript object
+      let hobbiesTestScores = JSON.parse(
+        localStorage.getItem("hobbiesTestScores")
+      );
+
+      // Access individual scores
+      let Coding = hobbiesTestScores["Coding/Programming"];
+      let Art = hobbiesTestScores["Art and Drawing"];
+      let Strategy_Games = hobbiesTestScores["Chess and Strategy Games"];
+      let Collecting = hobbiesTestScores["Collecting"];
+      let Creative_Writing = hobbiesTestScores["Creative Writing"];
+      let Culinary_Arts = hobbiesTestScores["Culinary Arts"];
+      let Gardening = hobbiesTestScores["Gardening"];
+      let Music = hobbiesTestScores["Music"];
+      let Outdoor_Activities = hobbiesTestScores["Outdoor Activities"];
+      let Photography = hobbiesTestScores["Photography"];
+      let Reading_Writing = hobbiesTestScores["Reading/Writing"];
+      let Science_Robotics = hobbiesTestScores["Science and Robotics"];
+      let Social_Activities =
+        hobbiesTestScores["Social Activities and Volunteering"];
+      let Technology = hobbiesTestScores["Technology"];
+      let totalHobbieTestScore = hobbiesTestScores["Total Score"];
+
+      // ApexCharts options and config
+      window.addEventListener("load", function () {
+        const options = {
+          colors: ["#FDBA8C"],
+          series: [
+            {
+              name: "Interest",
+              color: "#1A56DB",
+              data: [
+                { x: "Coding", y: Coding },
+                { x: "Art", y: Art },
+                { x: "Strategy", y: Strategy_Games },
+                { x: "Social", y: socialOrientation },
+                { x: "Collecting", y: Collecting },
+                { x: "Writing", y: Creative_Writing },
+                { x: "Culinary", y: Culinary_Arts },
+                { x: "Gardening", y: Gardening },
+                { x: "Music", y: Music },
+                { x: "Outdoor", y: Outdoor_Activities },
+                { x: "Photography", y: Photography },
+                { x: "Reading", y: Reading_Writing },
+                { x: "Science", y: Science_Robotics },
+                { x: "Social", y: Social_Activities },
+                { x: "Technology", y: Technology },
+              ],
+            },
+          ],
+          chart: {
+            type: "bar",
+            height: "320px",
+            fontFamily: "Inter, sans-serif",
+            toolbar: {
+              show: false,
+            },
+          },
+          plotOptions: {
+            bar: {
+              horizontal: false,
+              columnWidth: "70%",
+              borderRadiusApplication: "end",
+              borderRadius: 1,
+            },
+          },
+          tooltip: {
+            shared: true,
+            intersect: false,
+            style: {
+              fontFamily: "Inter, sans-serif",
+            },
+          },
+          states: {
+            hover: {
+              filter: {
+                type: "darken",
+                value: 1,
+              },
+            },
+          },
+          stroke: {
+            show: true,
+            width: 0,
+            colors: ["transparent"],
+          },
+          grid: {
+            show: false,
+            strokeDashArray: 4,
+            padding: {
+              left: 2,
+              right: 2,
+              top: -14,
+            },
+          },
+          dataLabels: {
+            enabled: false,
+          },
+          legend: {
+            show: false,
+          },
+          xaxis: {
+            floating: false,
+            labels: {
+              show: true,
+              style: {
+                fontFamily: "Inter, sans-serif",
+                cssClass:
+                  "text-xs font-normal fill-gray-500 dark:fill-gray-400",
+              },
+            },
+            axisBorder: {
+              show: false,
+            },
+            axisTicks: {
+              show: false,
+            },
+          },
+          yaxis: {
+            show: false,
+          },
+          fill: {
+            opacity: 1,
+          },
+        };
+
+        if (
+          document.getElementById("column-chart-hobbie") &&
+          typeof ApexCharts !== "undefined"
+        ) {
+          const chart = new ApexCharts(
+            document.getElementById("column-chart-hobbie"),
+            options
+          );
+          chart.render();
+        }
+      });
+    </script>
+
+    <!-- Hobbies Test Script -->
+    <script>
+      // Parse the JSON string into a JavaScript object
+      let interestTestScores = JSON.parse(
+        localStorage.getItem("interestTestScores")
+      );
+
+      // Access individual scores
+      let Agriculture = interestTestScores["Agriculture"];
+      let Architecture = interestTestScores["Architecture"];
+      let Bio_Technology = interestTestScores["Bio Technology"];
+      let Commerce = interestTestScores["Commerce"];
+      let Computer_Science = interestTestScores["Computer Science"];
+      let Defense = interestTestScores["Defense"];
+      let Engineering = interestTestScores["Engineering"];
+      let Fine_Arts = interestTestScores["Fine Arts & Design"];
+      let Home_Science = interestTestScores["Home Science"];
+      let Hotel_Management = interestTestScores["Hotel Management"];
+      let Humanities = interestTestScores["Humanities & Moral Sciences"];
+      let Journalism = interestTestScores["Journalism"];
+      let Law = hobbiesTestScores["Law"];
+      let Management = hobbiesTestScores["Management"];
+      let Mass_Communication = hobbiesTestScores["Mass Communication"];
+      let Medical = hobbiesTestScores["Medical"];
+      let Merchant_Navy = hobbiesTestScores["Merchant Navy"];
+      let Physical_Education = hobbiesTestScores["Physical Education"];
+      let Pure_Science = hobbiesTestScores["Pure Science (B.SC)"];
+      let Science = hobbiesTestScores["Science"];
+
+      let totalInterestTestScore = hobbiesTestScores["Total Score"];
+
+      // To get top 5 field of interest
+      // Convert object to array for sorting
+      let scoresArray = Object.entries(interestTestScores);
+
+      // Sort the array by scores in descending order
+      scoresArray.sort((a, b) => b[1] - a[1]);
+
+      // Get the top 5 scores and their interests
+      let top5Scores = scoresArray.slice(0, 6);
+
+      // Extract the top 5 interests and scores
+      let top0 = top5Scores[0][0];
+      let top0Score = top5Scores[0][1];
+
+      let top1 = top5Scores[1][0];
+      let top1Score = top5Scores[1][1];
+
+      let top2 = top5Scores[2][0];
+      let top2Score = top5Scores[2][1];
+
+      let top3 = top5Scores[3][0];
+      let top3Score = top5Scores[3][1];
+
+      let top4 = top5Scores[4][0];
+      let top4Score = top5Scores[4][1];
+
+      let top5 = top5Scores[5][0];
+      let top5Score = top5Scores[5][1];
+
+      console.log("Top 1:", top1, top1Score);
+      console.log("Top 2:", top2, top2Score);
+      console.log("Top 3:", top3, top3Score);
+      console.log("Top 4:", top4, top4Score);
+      console.log("Top 5:", top5, top5Score);
+
+      // ApexCharts options and config
+      window.addEventListener("load", function () {
+        const options = {
+          colors: ["#FDBA8C"],
+          series: [
+            {
+              name: "Interest",
+              color: "#1A56DB",
+              data: [
+                { x: top1, y: top1Score },
+                { x: top2, y: top2Score },
+                { x: top3, y: top3Score },
+                { x: top4, y: top4Score },
+                { x: top5, y: top5Score },
+              ],
+            },
+          ],
+          chart: {
+            type: "bar",
+            height: "320px",
+            fontFamily: "Inter, sans-serif",
+            toolbar: {
+              show: false,
+            },
+          },
+          plotOptions: {
+            bar: {
+              horizontal: false,
+              columnWidth: "70%",
+              borderRadiusApplication: "end",
+              borderRadius: 1,
+            },
+          },
+          tooltip: {
+            shared: true,
+            intersect: false,
+            style: {
+              fontFamily: "Inter, sans-serif",
+            },
+          },
+          states: {
+            hover: {
+              filter: {
+                type: "darken",
+                value: 1,
+              },
+            },
+          },
+          stroke: {
+            show: true,
+            width: 0,
+            colors: ["transparent"],
+          },
+          grid: {
+            show: false,
+            strokeDashArray: 4,
+            padding: {
+              left: 2,
+              right: 2,
+              top: -14,
+            },
+          },
+          dataLabels: {
+            enabled: false,
+          },
+          legend: {
+            show: false,
+          },
+          xaxis: {
+            floating: false,
+            labels: {
+              show: true,
+              style: {
+                fontFamily: "Inter, sans-serif",
+                cssClass:
+                  "text-xs font-normal fill-gray-500 dark:fill-gray-400",
+              },
+            },
+            axisBorder: {
+              show: false,
+            },
+            axisTicks: {
+              show: false,
+            },
+          },
+          yaxis: {
+            show: false,
+          },
+          fill: {
+            opacity: 1,
+          },
+        };
+
+        if (
+          document.getElementById("column-chart-interest") &&
+          typeof ApexCharts !== "undefined"
+        ) {
+          const chart = new ApexCharts(
+            document.getElementById("column-chart-interest"),
+            options
+          );
+          chart.render();
         }
       });
     </script>
