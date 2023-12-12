@@ -9,6 +9,12 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.css"
       rel="stylesheet"
     />
+    <!-- Style for google translate -->
+    <style>
+      body > .skiptranslate {
+        display: none;
+      }
+    </style>
   </head>
   <body>
     <header class="text-gray-600 body-font">
@@ -134,7 +140,7 @@
             id="navbar-sticky"
           >
             <ul
-              class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-transparent dark:border-gray-200"
+              class="flex flex-col items-center p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-transparent dark:border-gray-200"
             >
               <li>
                 <a
@@ -159,6 +165,46 @@
                   >Contact</a
                 >
               </li>
+              <li>
+                <button
+                  id="dropdownDefaultButton"
+                  data-dropdown-toggle="langdropdown"
+                  class="text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm p-2 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                  type="button"
+                >
+                  Language
+                  <svg
+                    class="w-2.5 h-2.5 ms-3"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 10 6"
+                  >
+                    <path
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="m1 1 4 4 4-4"
+                    />
+                  </svg>
+                </button>
+
+                <!-- Dropdown menu -->
+                <div
+                  id="langdropdown"
+                  class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-[white] border border-gray-300"
+                >
+                  <ul
+                    class="py-2 text-sm text-gray-700 dark:text-gray-200"
+                    aria-labelledby="dropdownDefaultButton"
+                  >
+                    <li>
+                      <div class="p-0" id="google_translate_element"></div>
+                    </li>
+                  </ul>
+                </div>
+              </li>
             </ul>
           </div>
         </div>
@@ -166,41 +212,168 @@
     </header>
 
     <div class="myContainer">
+      <div class="hero">
+        <section class="text-gray-600 body-font">
+          <div class="container px-5 py-24 mx-auto">
+            <div class="flex flex-col text-center w-full mb-20">
+              <h1
+                class="mb-5 mt-10 text-center text-4xl font-bold leading-none tracking-tight text-gray-800 md:text-2xl lg:text-3xl"
+              >
+                Your Top Career Matches
+              </h1>
+
+              <p class="lg:w-2/3 mx-auto leading-relaxed text-base">
+                After completing your comprehensive 4-dimensional test, we've
+                analyzed your unique combination of psychometric, aptitude,
+                interest, and hobbies/personality scores. Based on these
+                insights, we're excited to present your top 3 career matches.
+                These recommendations are tailored to align with your strengths,
+                interests, and aspirations, providing you with exciting
+                possibilities for your future career journey.
+              </p>
+            </div>
+            <div class="flex flex-wrap -m-2">
+              <div class="p-2 lg:w-1/3 md:w-1/2 w-full">
+                <div
+                  class="h-full flex items-center border-gray-200 border p-4 rounded-lg"
+                >
+                  <img
+                    alt="team"
+                    class="w-24 h-24 bg-gray-100 object-cover object-center flex-shrink-0 rounded-md mr-4"
+                    src="../img/top1.png"
+                  />
+                  <div class="flex-grow">
+                    <h2
+                      class="top1Head text-gray-900 title-font font-bold text-xl"
+                    >
+                      Top1
+                    </h2>
+                    <p class="text-gray-500">UI Designer</p>
+                  </div>
+                </div>
+              </div>
+              <div class="p-2 lg:w-1/3 md:w-1/2 w-full">
+                <div
+                  class="h-full flex items-center border-gray-200 border p-4 rounded-lg"
+                >
+                  <img
+                    alt="team"
+                    class="w-24 h-24 bg-gray-100 object-cover object-center flex-shrink-0 rounded-md mr-4"
+                    src="../img/top2.png"
+                  />
+                  <div class="flex-grow">
+                    <h2
+                      class="top2Head text-gray-900 title-font font-bold text-xl"
+                    >
+                      Top2
+                    </h2>
+                    <p class="text-gray-500">UI Designer</p>
+                  </div>
+                </div>
+              </div>
+              <div class="p-2 lg:w-1/3 md:w-1/2 w-full">
+                <div
+                  class="h-full flex items-center border-gray-200 border p-4 rounded-lg"
+                >
+                  <img
+                    alt="team"
+                    class="w-24 h-24 bg-gray-100 object-cover object-center flex-shrink-0 rounded-md mr-4"
+                    src="../img/top3.png"
+                  />
+                  <div class="flex-grow">
+                    <h2
+                      class="top3Head text-gray-900 title-font font-bold text-xl"
+                    >
+                      Top3
+                    </h2>
+                    <p class="text-gray-500">UI Designer</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
       <h1
-        class="mb-10 mt-[100px] text-center text-4xl font-bold leading-none tracking-tight text-gray-800 md:text-2xl lg:text-3xl"
+        class="mb-10 text-center text-4xl font-bold leading-none tracking-tight text-gray-800 md:text-2xl lg:text-3xl"
       >
         Detailed Result
       </h1>
       <hr class="w-[80%] m-auto" />
 
-      <div class="psychoDiv mt-[100px]">
-        <h1
-          class="mb-10 text-center text-4xl font-bold leading-none tracking-tight text-gray-800 md:text-2xl lg:text-3xl"
-        >
-          Psychometric Test
-        </h1>
+      <section class="psychoSection text-gray-600 body-font overflow-hidden">
+        <div class="container px-1 py-24 mx-auto">
+          <div class="lg:w-full mx-auto flex justify-around flex-wrap-reverse">
+            <div class="w-full mt-10 lg:mt-0 lg:w-[40%]">
+              <div class="psychoDiv">
+                <div class="graph flex justify-center">
+                  <div
+                    class="w-full bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6"
+                  >
+                    <div id="column-chart"></div>
+                    <div
+                      class="grid grid-cols-1 items-center border-gray-200 border-t dark:border-gray-700 justify-between"
+                    ></div>
+                  </div>
+                </div>
+              </div>
+            </div>
 
-        <div class="graph flex justify-center">
-          <div
-            class="max-w-md w-full bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6"
-          >
-            <div id="column-chart"></div>
             <div
-              class="grid grid-cols-1 items-center border-gray-200 border-t dark:border-gray-700 justify-between"
-            ></div>
+              class="lg:w-1/2 w-full text-center px-5 lg:px-0 lg:text-left lg:pl-10 lg:py-6 mt-0 lg:mt-0"
+            >
+              <h1 class="text-gray-900 text-3xl title-font font-medium mb-1">
+                Psychometric Test
+              </h1>
+
+              <p class="leading-relaxed">
+                In the Psychometric Test section, your unique strengths are
+                visually represented through a detailed bar graph, offering a
+                quick and insightful overview of your psychometric scores. This
+                test delves into aspects of your personality, emotional
+                intelligence, and cognitive abilities, providing a nuanced
+                understanding of how you approach challenges and interact with
+                the world.
+              </p>
+              <hr class="my-4 m-auto" />
+              <p class="leading-relaxed">
+                Uncover the intricacies of your personality with our
+                Psychometric Test results, presented through a visual bar graph.
+                This snapshot not only highlights your strengths but empowers
+                you to navigate career choices aligned with your distinct
+                qualities
+              </p>
+            </div>
           </div>
         </div>
-      </div>
+      </section>
 
-      <div class="hobbieDiv w-full mt-[100px]">
-        <h1
-          class="mb-10 mt-[100px] text-center text-4xl font-bold leading-none tracking-tight text-gray-800 md:text-2xl lg:text-3xl"
-        >
-          Hobbies | Personality
-        </h1>
+      <hr class="w-[80%] m-auto" />
+
+      <div class="hobbieDiv w-full mt-[50px]">
+        <div class="text-center p-3 lg:p-0 mb-20">
+          <h1
+            class="sm:text-3xl text-2xl font-medium title-font text-gray-900 mb-4"
+          >
+            Hobbies | Personality
+          </h1>
+          <p
+            class="text-base leading-relaxed xl:w-2/4 lg:w-3/4 mx-auto text-gray-500s"
+          >
+            In the this section, we delve into the unique blend of your hobbies
+            and personality traits to provide a holistic understanding of your
+            character. Discover how your interests and personal characteristics
+            contribute to your overall profile, guiding you towards careers that
+            resonate with your passions. This personalized analysis goes beyond
+            conventional assessments, offering a nuanced perspective on how your
+            hobbies and personality traits shape your professional path.
+          </p>
+        </div>
+
         <div class="graph flex justify-center">
           <div
-            class="max-w-[1200px] w-full bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6"
+            class="max-w-[1200px] w-[95%] bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6"
           >
             <div id="column-chart-hobbie"></div>
             <div
@@ -210,52 +383,111 @@
         </div>
       </div>
 
-      <hr class="w-[80%] m-auto" />
-      <div class="aptiDiv mt-[100px]">
-        <h1
-          class="mb-10 mt-[100px] text-center text-4xl font-bold leading-none tracking-tight text-gray-800 md:text-2xl lg:text-3xl"
-        >
-          Aptitude Test Detailed Analysis
-        </h1>
-        <div class="graph result flex justify-center m-10 mt-[10px]">
+      <hr class="w-[80%] mt-[60px] m-auto mb-[-60px]" />
+
+      <section class="aptiSection text-gray-600 body-font overflow-hidden">
+        <div class="container px-5 py-24 mx-auto">
           <div
-            class="max-w-[500px] w-[100%] bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6"
+            class="lg:w-full mx-auto flex flex-row-reverse justify-around items-center flex-wrap-reverse"
           >
-            <h5
-              class="text-2xl text-center font-bold leading-none text-gray-900 dark:text-white me-1"
+            <div class="w-[95%] lg:w-[40%]">
+              <div class="aptiDiv">
+                <h1
+                  class="mb-10 text-center text-4xl font-bold leading-none tracking-tight text-gray-800 md:text-2xl lg:text-3xl"
+                ></h1>
+                <div
+                  class="graph result flex justify-center m-0 lg:m-10 mt-[10px]"
+                >
+                  <div
+                    class="max-w-[500px] w-full bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6"
+                  >
+                    <div class="py-6" id="pie-chart"></div>
+
+                    <div
+                      class="grid grid-cols-1 items-center border-gray-200 border-t dark:border-gray-700 justify-between"
+                    ></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="lg:w-1/2 text-center lg:text-left w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0"
             >
-              Aptitude Test Result
-            </h5>
+              <h1 class="text-gray-900 text-3xl title-font font-medium mb-1">
+                Aptitude Test Detailed Analysis
+              </h1>
 
-            <div class="py-6" id="pie-chart"></div>
-
-            <div
-              class="grid grid-cols-1 items-center border-gray-200 border-t dark:border-gray-700 justify-between"
-            ></div>
+              <p class="leading-relaxed">
+                In the Aptitude Test section, we analyze your innate abilities
+                and problem-solving skills to guide you toward careers that
+                align seamlessly with your natural talents. This comprehensive
+                assessment explores your cognitive strengths, quantitative
+                reasoning, and critical thinking, providing valuable insights
+                into the areas where you excel. Let our Aptitude Test results be
+                your compass, directing you towards professions that leverage
+                your unique capabilities for optimal success.
+              </p>
+              <hr class="my-4 m-auto" />
+              <p class="leading-relaxed">
+                Enhance your problem-solving prowess with our Aptitude Test
+                insights, designed to identify and nurture your innate
+                abilities. Uncover hidden strengths and fine-tune your cognitive
+                skills, paving the way for a more confident and successful
+                career journey.
+              </p>
+            </div>
           </div>
         </div>
-      </div>
+      </section>
+
       <hr class="w-[80%] m-auto" />
 
-      <div class="interestDiv mt-[100px]">
-        <h1
-          class="mb-10 mt-[100px] text-center text-4xl font-bold leading-none tracking-tight text-gray-800 md:text-2xl lg:text-3xl"
-        >
-          Interest
-        </h1>
-        <div class="graph flex justify-center">
-          <div
-            class="max-w-lg w-full m-4 bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6"
-          >
-            <div id="column-chart-interest"></div>
+      <section class="interestSection text-gray-600 body-font overflow-hidden">
+        <div class="container px-5 py-24 mx-auto">
+          <div class="lg:w-full mx-auto flex justify-around flex-wrap-reverse">
+            <div class="w-[99%] lg:w-[40%]">
+              <div class="interestDiv">
+                <div class="graph flex justify-center">
+                  <div
+                    class="max-w-lg w-full m-0 lg:m-4 bg-white rounded-lg shadow dark:bg-gray-800 lg:p-4 py-2 md:p-6"
+                  >
+                    <div id="column-chart-interest"></div>
+                    <div
+                      class="grid grid-cols-1 items-center border-gray-200 border-t dark:border-gray-700 justify-between"
+                    ></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             <div
-              class="grid grid-cols-1 items-center border-gray-200 border-t dark:border-gray-700 justify-between"
-            ></div>
+              class="lg:w-1/2 w-full text-center lg:text-left lg:pl-10 lg:py-6 mt-6 lg:mt-0"
+            >
+              <h1 class="text-gray-900 text-3xl title-font font-medium mb-1">
+                Your Interest
+              </h1>
+
+              <p class="leading-relaxed">
+                In the Interest Test section, we explore the passions that drive
+                you. This comprehensive assessment delves into your preferences,
+                hobbies, and the activities that ignite your curiosity. Uncover
+                your key areas of interest to guide you towards fulfilling
+                career paths that align with your genuine enthusiasm and
+                engagement.
+              </p>
+              <hr class="my-4 m-auto" />
+              <p class="leading-relaxed">
+                Explore the facets of your interests through our in-depth
+                assessment, paving the way for personalized career
+                recommendations that resonate with your genuine passions. Let
+                your interests shape your professional journey for a more
+                fulfilling and enjoyable career.
+              </p>
+            </div>
           </div>
         </div>
-      </div>
-
-      <hr class="w-[80%] m-auto" />
+      </section>
 
       <hr class="w-[80%] m-auto" />
     </div>
@@ -685,6 +917,13 @@
       let top5 = top5Scores[5][0];
       let top5Score = top5Scores[5][1];
 
+      let top1Head = document.querySelector(".top1Head");
+      let top2Head = document.querySelector(".top2Head");
+      let top3Head = document.querySelector(".top3Head");
+      top1Head.innerHTML = top1;
+      top2Head.innerHTML = top2;
+      top3Head.innerHTML = top3;
+
       console.log("Top 1:", top1, top1Score);
       console.log("Top 2:", top2, top2Score);
       console.log("Top 3:", top3, top3Score);
@@ -698,7 +937,7 @@
           series: [
             {
               name: "Interest",
-              color: "#1A56DB",
+              color: "#9061F9",
               data: [
                 { x: top1, y: top1Score },
                 { x: top2, y: top2Score },
@@ -721,7 +960,7 @@
               horizontal: false,
               columnWidth: "70%",
               borderRadiusApplication: "end",
-              borderRadius: 1,
+              borderRadius: 7,
             },
           },
           tooltip: {
@@ -796,5 +1035,19 @@
         }
       });
     </script>
+
+    <!-- Script for google translate -->
+    <script type="text/javascript">
+      function googleTranslateElementInit() {
+        new google.translate.TranslateElement(
+          { pageLanguage: "en" },
+          "google_translate_element"
+        );
+      }
+    </script>
+    <script
+      type="text/javascript"
+      src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
+    ></script>
   </body>
 </html>
