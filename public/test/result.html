@@ -14,10 +14,17 @@
       body > .skiptranslate {
         display: none;
       }
+      /* ---------------- */
+      @media print {
+        /* Hide elements with the class 'no-print' for reultPrint function */
+        .no-print {
+          display: none;
+        }
+      }
     </style>
   </head>
   <body>
-    <header class="text-gray-600 body-font">
+    <header class="no-print text-gray-600 body-font">
       <nav
         class="bg-transparent fixed w-full z-20 top-0 start-0 border-b border-gray-200 bg-opacity-30 backdrop-filter backdrop-blur-lg"
       >
@@ -490,6 +497,15 @@
       </section>
 
       <hr class="w-[80%] m-auto" />
+      <div class="flex justify-center items-center p-10">
+        <button
+          onclick="printResult()"
+          class="no-print text-white bg-blue-700 hover:bg-blue-800 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700"
+          type="button"
+        >
+          Download Result
+        </button>
+      </div>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js"></script>
@@ -508,6 +524,11 @@
           document.querySelector(".myContainer").style.display = "none";
         }
       });
+
+      function printResult() {
+        // Open the print dialog
+        window.print();
+      }
     </script>
 
     <!-- Aptitude Graph Script -->
@@ -620,7 +641,7 @@
               color: "#16BDCA",
               data: [
                 { x: "Knowledge", y: knowledgeOrientation },
-                { x: "Practical", y: practicalOrientation },
+                // { x: "Practical", y: practicalOrientation },
                 { x: "Artistic", y: artisticOrientation },
                 { x: "Social", y: socialOrientation },
                 { x: "Power", y: powerOrientation },
@@ -638,7 +659,7 @@
           plotOptions: {
             bar: {
               horizontal: false,
-              columnWidth: "70%",
+              columnWidth: "50%",
               borderRadiusApplication: "end",
               borderRadius: 1,
             },
@@ -685,7 +706,7 @@
               style: {
                 fontFamily: "Inter, sans-serif",
                 cssClass:
-                  "text-xs font-normal fill-gray-500 dark:fill-gray-400",
+                  "text-xs  font-normal fill-gray-300 dark:fill-gray-300",
               },
             },
             axisBorder: {
@@ -826,7 +847,7 @@
               style: {
                 fontFamily: "Inter, sans-serif",
                 cssClass:
-                  "text-xs font-normal fill-gray-500 dark:fill-gray-400",
+                  "text-[5px] sm:text-[10px] lg:text-xs font-normal fill-gray-300 dark:fill-gray-300",
               },
             },
             axisBorder: {
@@ -857,7 +878,7 @@
       });
     </script>
 
-    <!-- Hobbies Test Script -->
+    <!-- Interest Test Script -->
     <script>
       // Parse the JSON string into a JavaScript object
       let interestTestScores = JSON.parse(
@@ -924,11 +945,11 @@
       top2Head.innerHTML = top2;
       top3Head.innerHTML = top3;
 
-      console.log("Top 1:", top1, top1Score);
-      console.log("Top 2:", top2, top2Score);
-      console.log("Top 3:", top3, top3Score);
-      console.log("Top 4:", top4, top4Score);
-      console.log("Top 5:", top5, top5Score);
+      // console.log("Top 1:", top1, top1Score);
+      // console.log("Top 2:", top2, top2Score);
+      // console.log("Top 3:", top3, top3Score);
+      // console.log("Top 4:", top4, top4Score);
+      // console.log("Top 5:", top5, top5Score);
 
       // ApexCharts options and config
       window.addEventListener("load", function () {
@@ -1005,7 +1026,7 @@
               style: {
                 fontFamily: "Inter, sans-serif",
                 cssClass:
-                  "text-xs font-normal fill-gray-500 dark:fill-gray-400",
+                  "text-[10px] lg:text-xs font-normal fill-gray-300 dark:fill-gray-300",
               },
             },
             axisBorder: {
