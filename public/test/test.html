@@ -9,9 +9,15 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.css"
       rel="stylesheet"
     />
+    <!-- Style for google translate -->
+    <style>
+      body > .skiptranslate {
+        display: none;
+      }
+    </style>
   </head>
   <body>
-    <header class="text-gray-600 body-font">
+    <header class="no-print text-gray-600 body-font">
       <nav
         class="bg-transparent fixed w-full z-20 top-0 start-0 border-b border-gray-200 bg-opacity-30 backdrop-filter backdrop-blur-lg"
       >
@@ -21,7 +27,7 @@
           <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse">
             <img src="/img/logo.png" class="h-10" alt="Flowbite Logo" />
             <span
-              class="self-center text-2xl font-semibold whitespace-nowrap dark:text-black"
+              class="self-center hidden sm:block text-2xl font-semibold whitespace-nowrap dark:text-black"
               >SIH</span
             >
           </a>
@@ -134,7 +140,7 @@
             id="navbar-sticky"
           >
             <ul
-              class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-transparent dark:border-gray-200"
+              class="flex flex-col items-center p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-transparent dark:border-gray-200"
             >
               <li>
                 <a
@@ -158,6 +164,46 @@
                   class="block py-2 px-3 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-gray-800 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
                   >Contact</a
                 >
+              </li>
+              <li>
+                <button
+                  id="dropdownDefaultButton"
+                  data-dropdown-toggle="langdropdown"
+                  class="text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm p-2 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                  type="button"
+                >
+                  Language
+                  <svg
+                    class="w-2.5 h-2.5 ms-3"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 10 6"
+                  >
+                    <path
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="m1 1 4 4 4-4"
+                    />
+                  </svg>
+                </button>
+
+                <!-- Dropdown menu -->
+                <div
+                  id="langdropdown"
+                  class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-[white] border border-gray-300"
+                >
+                  <ul
+                    class="py-2 text-sm text-gray-700 dark:text-gray-200"
+                    aria-labelledby="dropdownDefaultButton"
+                  >
+                    <li>
+                      <div class="p-0" id="google_translate_element"></div>
+                    </li>
+                  </ul>
+                </div>
               </li>
             </ul>
           </div>
@@ -331,5 +377,19 @@
         }
       });
     </script>
+
+    <!-- Script for google translate -->
+    <script type="text/javascript">
+      function googleTranslateElementInit() {
+        new google.translate.TranslateElement(
+          { pageLanguage: "en" },
+          "google_translate_element"
+        );
+      }
+    </script>
+    <script
+      type="text/javascript"
+      src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
+    ></script>
   </body>
 </html>
