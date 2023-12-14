@@ -657,20 +657,26 @@
 
       function selectAnswer(score) {
         const selectedBtn = event.target;
-        const isCorrect = selectedBtn.dataset.correct === "true";
-        let currentQuestion = questions[currentQuestionIndex];
-        // Change the color of the selected option
-        console.log(selectedBtn);
-        selectedBtn.classList.add("correct");
 
-        // Disable all buttons after selecting an option
+        // Reset the color of all buttons
         Array.from(answerButtons.children).forEach((button) => {
-          button.disabled = true;
+          button.classList.remove("correct");
         });
 
-        // Save the score
+        // Change the color of the selected option
+        selectedBtn.classList.add("correct");
+
+        // Enable all buttons after selecting an option
+        Array.from(answerButtons.children).forEach((button) => {
+          button.disabled = false;
+        });
+
+        // Save the score for the latest option only
+        let currentQuestion = questions[currentQuestionIndex];
+
+        // Save the score for the latest option only
         scores[currentQuestion.typeOfQuestion] =
-          scores[currentQuestion.typeOfQuestion] || 0;
+          scores[currentQuestion.typeOfQuestion] || 0; // Reset score to zero
         scores[currentQuestion.typeOfQuestion] += score;
         totalScore += score;
 

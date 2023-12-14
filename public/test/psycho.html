@@ -639,19 +639,26 @@
 
       function selectAnswer(score) {
         const selectedBtn = event.target;
-        const isCorrect = selectedBtn.dataset.correct === "true";
-        let currentQuestion = questions[currentQuestionIndex];
+
+        // Reset the color of all buttons
+        Array.from(answerButtons.children).forEach((button) => {
+          button.classList.remove("correct");
+        });
+
         // Change the color of the selected option
         selectedBtn.classList.add("correct");
 
-        // Disable all buttons after selecting an option
+        // Enable all buttons after selecting an option
         Array.from(answerButtons.children).forEach((button) => {
-          button.disabled = true;
+          button.disabled = false;
         });
 
-        // Save the score
+        // Save the score for the latest option only
+        let currentQuestion = questions[currentQuestionIndex];
+
+        // Save the score for the latest option only
         scores[currentQuestion.typeOfQuestion] =
-          scores[currentQuestion.typeOfQuestion] || 0;
+          scores[currentQuestion.typeOfQuestion] || 0; // Reset score to zero
         scores[currentQuestion.typeOfQuestion] += score;
         totalScore += score;
 
