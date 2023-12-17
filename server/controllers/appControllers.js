@@ -3,6 +3,8 @@ const { request } = require("express");
 const Register = require("../models/register");
 const Profile = require("../models/profile");
 const path = require("path");
+const Parent = require("../models/parent");
+const { log } = require("console");
 
 exports.homepage = async (req, res) => {
   res.render("index");
@@ -22,6 +24,10 @@ exports.studentRegisterPage = async (req, res) => {
 
 exports.parentLoginPage = async (req, res) => {
   res.render("parentLogin");
+};
+
+exports.parentRegisterPage = async (req, res) => {
+  res.render("parentRegister");
 };
 
 exports.profilePage = async (req, res) => {
@@ -118,5 +124,65 @@ exports.editProfileAPI = async (req, res) => {
   } catch (error) {
     req.flash("infoErrors", `error:${error}`);
     res.status(400).redirect("editProfile");
+  }
+};
+
+exports.parentRegisterAPI = async (req, res) => {
+  const studentEmail = req.body.studentEmail;
+  const studentPassword = req.body.studentPassword;
+
+  try {
+    const studentExists = await Register.findOne({
+      email: studentEmail,
+      password: studentPassword,
+    });
+
+    if (studentExists) {
+      const parentExists = await Parent.findOne({
+        email: req.body.parentEmail,
+      });
+
+      if (!parentExists) {
+        const registerParent = new Parent({
+          firstName: req.body.firstName,
+          lastName: req.body.lastName,
+          email: req.body.parentEmail,
+          studentEmail: studentEmail,
+          studentPassword: studentPassword,
+          password: req.body.password,
+          confirmPassword: req.body.confirmPassword,
+        });
+
+        const registerdParentInfo = await registerParent.save();
+        req.flash("infoSubmit", "Profile Created Successfully");
+        res.status(200).redirect("/");
+      } else {
+        // req.flash("infoErrors", "Parent with this email already exists");
+        res.status(400).redirect("/parentRegister");
+      }
+    } else {
+      // req.flash("infoErrors", "Invalid Student Email or Password");
+      res.status(400).redirect("/parentRegister");
+    }
+  } catch (error) {
+    req.flash("infoErrors", `Error: ${error.message}`);
+    res.status(400).redirect("/parentRegister");
+  }
+};
+
+exports.parentLoginAPI = async (req, res) => {
+  try {
+    const email = req.body.email;
+    const password = req.body.password;
+
+    const parentEmail = await Parent.findOne({ email: email });
+
+    if (parentEmail && parentEmail.password === password) {
+      res.status(200).render("profile");
+    } else {
+      res.status(400).send("Invalid Password");
+    }
+  } catch (error) {
+    res.status(400).send("Invalid Details");
   }
 };

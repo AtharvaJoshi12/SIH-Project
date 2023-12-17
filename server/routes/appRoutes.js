@@ -6,6 +6,7 @@ router.get("/", appControllers.homepage);
 router.get("/studentLogin", appControllers.studentLoginPage);
 router.get("/studentRegister", appControllers.studentRegisterPage);
 router.get("/parentLogin", appControllers.parentLoginPage);
+router.get("/parentRegister", appControllers.parentRegisterPage);
 router.get("/profile", appControllers.profilePage);
 router.get("/editProfile", appControllers.editProfilePage);
 router.get("/test", appControllers.testPage);
@@ -18,4 +19,7 @@ router.get("/test/result", appControllers.resultPage);
 router.post("/studentRegister", appControllers.studentRegisterAPI);
 router.post("/studentLogin", appControllers.studentLoginAPI);
 router.post("/editProfile", appControllers.editProfileAPI);
+router.post("/parentRegister", appControllers.parentRegisterAPI);
+router.post("/parentLogin", appControllers.parentLoginAPI);
+
 module.exports = router;
