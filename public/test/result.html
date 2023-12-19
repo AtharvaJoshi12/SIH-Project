@@ -249,7 +249,7 @@
                 </p>
               </div>
               <h1
-                class="mb-5 mt-5 text-center text-2xl font-semibold leading-none tracking-tight text-gray-600 md:text-2xl lg:text-2xl"
+                class="mb-10 mt-10 text-center text-2xl font-semibold leading-none tracking-tight text-gray-600 md:text-2xl lg:text-2xl"
               >
                 Top 3 Conventional Career Matches For You
               </h1>
@@ -302,6 +302,67 @@
                     <div class="flex-grow">
                       <h2
                         class="top3Head text-gray-900 title-font font-bold text-xl"
+                      >
+                        Top3
+                      </h2>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <h1
+                class="mb-10 mt-10 text-center text-2xl font-semibold leading-none tracking-tight text-gray-600 md:text-2xl lg:text-2xl"
+              >
+                Top 3 Non-Conventional Career Matches For You
+              </h1>
+              <div class="flex flex-wrap -m-2">
+                <div class="p-2 lg:w-1/3 md:w-1/2 w-full">
+                  <div
+                    class="h-full flex items-center border-gray-200 border p-4 rounded-lg"
+                  >
+                    <img
+                      alt="team"
+                      class="w-24 h-24 bg-gray-100 object-cover object-center flex-shrink-0 rounded-md mr-4"
+                      src="../img/top1.png"
+                    />
+                    <div class="flex-grow">
+                      <h2
+                        class="top1HeadNonConv text-gray-900 title-font font-bold text-xl"
+                      >
+                        Top1
+                      </h2>
+                    </div>
+                  </div>
+                </div>
+                <div class="p-2 lg:w-1/3 md:w-1/2 w-full">
+                  <div
+                    class="h-full flex items-center border-gray-200 border p-4 rounded-lg"
+                  >
+                    <img
+                      alt="team"
+                      class="w-24 h-24 bg-gray-100 object-cover object-center flex-shrink-0 rounded-md mr-4"
+                      src="../img/top2.png"
+                    />
+                    <div class="flex-grow">
+                      <h2
+                        class="top2HeadNonConv text-gray-900 title-font font-bold text-xl"
+                      >
+                        Top2
+                      </h2>
+                    </div>
+                  </div>
+                </div>
+                <div class="p-2 lg:w-1/3 md:w-1/2 w-full">
+                  <div
+                    class="h-full flex items-center border-gray-200 border p-4 rounded-lg"
+                  >
+                    <img
+                      alt="team"
+                      class="w-24 h-24 bg-gray-100 object-cover object-center flex-shrink-0 rounded-md mr-4"
+                      src="../img/top3.png"
+                    />
+                    <div class="flex-grow">
+                      <h2
+                        class="top3HeadNonConv text-gray-900 title-font font-bold text-xl"
                       >
                         Top3
                       </h2>
@@ -1534,6 +1595,88 @@
       }%`;
     </script>
 
+    <!-- Non conventinal Test -->
+    <script>
+      let nonConventionalTestScores = JSON.parse(
+        localStorage.getItem("nonConventionalTestScores")
+      );
+
+      // Access individual scores
+      let Actor = nonConventionalTestScores["Actor"];
+      let Airline_Pilot = nonConventionalTestScores["Airline Pilot"];
+      let Animator = nonConventionalTestScores["Animator"];
+      let Chef = nonConventionalTestScores["Chef"];
+      let Civil_Services = nonConventionalTestScores["Civil Services"];
+      let Content_Creator = nonConventionalTestScores["Content Creator"];
+      let Digital_Marketer = nonConventionalTestScores["Digital Marketer"];
+      let Entrepreneur = nonConventionalTestScores["Entrepreneur"];
+      let Event_Management = nonConventionalTestScores["Event Management"];
+      let Film_Director = nonConventionalTestScores["Film Director"];
+      let Fitness_Trainer = nonConventionalTestScores["Fitness Trainer"];
+      let Gamer = nonConventionalTestScores["Gamer"];
+      let News_Reporter = nonConventionalTestScores["News Reporter"];
+      // let Photography = interestTestScores["Photography"];
+      let Professional_Travel_Blogger =
+        nonConventionalTestScores["Professional Travel Blogger"];
+      let Psychiatrist = nonConventionalTestScores["Psychiatrist "];
+      let Singer = nonConventionalTestScores["Singer"];
+      let Sketch_Artist = nonConventionalTestScores["Sketch Artist"];
+      let Stock_Analyst = nonConventionalTestScores["Stock Analyst"];
+      let Stylist = nonConventionalTestScores["Stylist"];
+
+      // To get top 5 field of interest
+      // Convert object to array for sorting
+      let scoresArrayNonConv = Object.entries(nonConventionalTestScores);
+
+      console.log(scoresArrayNonConv);
+      // Sort the array by scores in descending order
+      scoresArrayNonConv.sort((a, b) => b[1] - a[1]);
+
+      // Get the top 5 scores and their interests
+      let top5ScoresNonConv = scoresArrayNonConv.slice(0, 6);
+
+      let totalScoreForEachSectionNonConv = 5;
+      // Extract the top 5 interests and scores
+      let top0NonConv = top5ScoresNonConv[0][0];
+      let top0ScoreNonConv = top5ScoresNonConv[0][1];
+
+      let top1NonConv = top5ScoresNonConv[1][0];
+      let top1ScoreNonConv =
+        top5ScoresNonConv[1][1] > totalScoreForEachSectionNonConv
+          ? totalScoreForEachSectionNonConv
+          : top5ScoresNonConv[1][1];
+
+      let top2NonConv = top5ScoresNonConv[2][0];
+      let top2ScoreNonConv =
+        top5ScoresNonConv[2][1] > totalScoreForEachSectionNonConv
+          ? totalScoreForEachSectionNonConv
+          : top5ScoresNonConv[2][1];
+
+      let top3NonConv = top5ScoresNonConv[3][0];
+      let top3ScoreNonConv =
+        top5ScoresNonConv[3][1] > totalScoreForEachSectionNonConv
+          ? totalScoreForEachSectionNonConv
+          : top5ScoresNonConv[3][1];
+
+      let top4NonConv = top5ScoresNonConv[4][0];
+      let top4ScoreNonConv = top5ScoresNonConv[4][1];
+
+      let top5NonConv = top5ScoresNonConv[5][0];
+      let top5ScoreNonConv = top5ScoresNonConv[5][1];
+
+      let top1HeadNonConv = document.querySelector(".top1HeadNonConv");
+      let top2HeadNonConv = document.querySelector(".top2HeadNonConv");
+      let top3HeadNonConv = document.querySelector(".top3HeadNonConv");
+      top1HeadNonConv.innerHTML = `${top1NonConv} <br> Percentage - ${
+        (top1ScoreNonConv / totalScoreForEachSection) * 100
+      }%`;
+      top2HeadNonConv.innerHTML = `${top2NonConv} <br> Percentage - ${
+        (top2ScoreNonConv / totalScoreForEachSection) * 100
+      }%`;
+      top3HeadNonConv.innerHTML = `${top3NonConv} <br> Percentage - ${
+        (top3ScoreNonConv / totalScoreForEachSection) * 100
+      }%`;
+    </script>
     <!-- Script for google translate -->
     <script type="text/javascript">
       function googleTranslateElementInit() {
