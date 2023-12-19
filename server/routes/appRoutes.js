@@ -21,5 +21,6 @@ router.post("/studentLogin", appControllers.studentLoginAPI);
 router.post("/editProfile", appControllers.editProfileAPI);
 router.post("/parentRegister", appControllers.parentRegisterAPI);
 router.post("/parentLogin", appControllers.parentLoginAPI);
+router.post("/test/result", appControllers.resultAPI);
 
 module.exports = router;

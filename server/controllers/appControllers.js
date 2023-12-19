@@ -186,3 +186,31 @@ exports.parentLoginAPI = async (req, res) => {
     res.status(400).send("Invalid Details");
   }
 };
+
+exports.resultAPI = async (req, res) => {
+  try {
+    // Assume the user identifier (e.g., email) is sent along with the reports data in the request body
+    const { userIdentifier, reportsData } = req.body;
+
+    // Fetch the existing user from the database based on the identifier
+    const existingUser = await Register.findOne({ email: userIdentifier });
+
+    if (!existingUser) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    console.log("Inside api result");
+
+    // Create a new report linked to the existing user
+    const newReports = new ReportsModel({
+      user: existingUser._id,
+      ...reportsData,
+    });
+    await newReports.save();
+
+    res.status(200).json({ message: "Reports saved successfully" });
+  } catch (error) {
+    console.error("Error saving reports:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
