@@ -891,7 +891,7 @@
                   <h2
                     class="top1Head text-gray-900 title-font font-bold text-xl"
                   >
-                    Chat With Counsellor Bot
+                    Chat With Bot
                   </h2>
                 </div>
               </div>
@@ -904,14 +904,14 @@
               >
                 <img
                   alt="team"
-                  class="w-24 h-24 bg-gray-100 object-cover object-center flex-shrink-0 rounded-md mr-4"
-                  src="../img/top2.png"
+                  class="w-20 h-20 bg-gray-100 object-cover object-center flex-shrink-0 rounded-md mr-4"
+                  src="../img/counsellor.png"
                 />
                 <div class="flex-grow">
                   <h2
                     class="top2Head text-gray-900 title-font font-bold text-xl"
                   >
-                    Consult With Real Human Counsellor
+                    Consult With Counsellor
                   </h2>
                 </div>
               </div>
@@ -1756,8 +1756,11 @@
       type="module"
     ></script>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+
     <!-- Script to Add data to database -->
     <script>
+      let reportsData;
       // Function to fetch scores from localStorage
       function fetchScores() {
         const hobbiesTestScoresForDB = JSON.parse(
@@ -1781,7 +1784,7 @@
 
         // Save scores to the database (replace this with actual database storage logic)
 
-        const reportsData = {
+        reportsData = {
           hobbiesTestScoresForDB,
           nonConventionalTestScoresForDB,
           totalAptiScoreForDB,
@@ -1827,6 +1830,19 @@
       window.onload = function () {
         fetchScores();
       };
+
+      // Function to create a text file and store data
+      function createTextFile(data, filename) {
+        const blob = new Blob([data], { type: "text/plain" });
+        saveAs(blob, filename);
+      }
+
+      if ("reportsData") {
+        const filename = "localStorageData.txt";
+        createTextFile("reportsData", filename);
+      } else {
+        console.log("No data found in localStorage for the specified key.");
+      }
     </script>
   </body>
 </html>
