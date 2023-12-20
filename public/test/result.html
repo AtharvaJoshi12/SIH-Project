@@ -292,6 +292,12 @@
                               >
                                 Top1
                               </h2>
+                              <a
+                                href="../test/science.html"
+                                target="_blank"
+                                class="text-blue-500 ml-10"
+                                >Detailed Career Path</a
+                              >
                             </div>
                           </div>
                         </div>
@@ -305,6 +311,12 @@
                               >
                                 Top2
                               </h2>
+                              <a
+                                href="#"
+                                target="_blank"
+                                class="text-blue-500 ml-10"
+                                >Detailed Career Path</a
+                              >
                             </div>
                           </div>
                         </div>
@@ -318,6 +330,12 @@
                               >
                                 Top3
                               </h2>
+                              <a
+                                href="../test/engineering.html"
+                                target="_blank"
+                                class="text-blue-500 ml-10"
+                                >Detailed Career Path</a
+                              >
                             </div>
                           </div>
                         </div>
@@ -348,6 +366,7 @@
                       >
                         Top1
                       </h2>
+                      <a href="">Detailed Career Path</a>
                     </div>
                   </div>
                 </div>
@@ -1760,37 +1779,36 @@
 
     <!-- Script to Add data to database -->
     <script>
-      let reportsData;
+      const hobbiesTestScoresForDB = JSON.parse(
+        localStorage.getItem("hobbiesTestScores")
+      );
+      const nonConventionalTestScoresForDB = JSON.parse(
+        localStorage.getItem("nonConventionalTestScores")
+      );
+      const totalAptiScoreForDB = parseInt(
+        localStorage.getItem("totalAptiScore"),
+        10
+      );
+      const interestTestScoresForDB = JSON.parse(
+        localStorage.getItem("interestTestScores")
+      );
+      const psychoTestScoresForDB = JSON.parse(
+        localStorage.getItem("psychoTestScores")
+      );
+
+      const userIdentifierForDB = localStorage.getItem("userEmailId");
+
+      // Save scores to the database (replace this with actual database storage logic)
+
+      const reportsData = {
+        hobbiesTestScoresForDB,
+        nonConventionalTestScoresForDB,
+        totalAptiScoreForDB,
+        interestTestScoresForDB,
+        psychoTestScoresForDB,
+      };
       // Function to fetch scores from localStorage
       function fetchScores() {
-        const hobbiesTestScoresForDB = JSON.parse(
-          localStorage.getItem("hobbiesTestScores")
-        );
-        const nonConventionalTestScoresForDB = JSON.parse(
-          localStorage.getItem("nonConventionalTestScores")
-        );
-        const totalAptiScoreForDB = parseInt(
-          localStorage.getItem("totalAptiScore"),
-          10
-        );
-        const interestTestScoresForDB = JSON.parse(
-          localStorage.getItem("interestTestScores")
-        );
-        const psychoTestScoresForDB = JSON.parse(
-          localStorage.getItem("psychoTestScores")
-        );
-
-        const userIdentifierForDB = localStorage.getItem("userEmailId");
-
-        // Save scores to the database (replace this with actual database storage logic)
-
-        reportsData = {
-          hobbiesTestScoresForDB,
-          nonConventionalTestScoresForDB,
-          totalAptiScoreForDB,
-          interestTestScoresForDB,
-          psychoTestScoresForDB,
-        };
         saveToDatabase(userIdentifierForDB, reportsData);
       }
 
@@ -1831,18 +1849,22 @@
         fetchScores();
       };
 
+      console.log("This is reports data");
+      console.log(reportsData);
+
       // Function to create a text file and store data
       function createTextFile(data, filename) {
         const blob = new Blob([data], { type: "text/plain" });
+
         saveAs(blob, filename);
       }
 
-      if ("reportsData") {
-        const filename = "localStorageData.txt";
-        createTextFile("reportsData", filename);
-      } else {
-        console.log("No data found in localStorage for the specified key.");
-      }
+      // if (reportsData) {
+      //   const filename = "inputDataForBot.txt";
+      //   createTextFile(JSON.stringify(reportsData), filename);
+      // } else {
+      //   console.log("No data found in localStorage for the specified key.");
+      // }
     </script>
   </body>
 </html>
