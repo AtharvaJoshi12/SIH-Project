@@ -4,6 +4,7 @@ const Register = require("../models/register");
 const Profile = require("../models/profile");
 const path = require("path");
 const Parent = require("../models/parent");
+const Feedback = require("../models/feedback");
 const { log } = require("console");
 
 exports.homepage = async (req, res) => {
@@ -65,6 +66,10 @@ exports.hobbiesPage = async (req, res) => {
 exports.resultPage = async (req, res) => {
   const htmlFilePath = path.join(__dirname, "../../public/test/result.html");
   res.sendFile(htmlFilePath);
+};
+
+exports.feedbackPage = async (req, res) => {
+  res.render("feedback.ejs");
 };
 
 exports.studentRegisterAPI = async (req, res) => {
@@ -212,5 +217,26 @@ exports.resultAPI = async (req, res) => {
   } catch (error) {
     console.error("Error saving reports:", error);
     res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
+exports.feedbackAPI = async (req, res) => {
+  try {
+    const { name, email, feedback } = req.body;
+
+    // Create a new feedback instance
+    const newFeedback = new Feedback({
+      name,
+      email,
+      feedback,
+    });
+
+    // Save to MongoDB
+    await newFeedback.save();
+
+    res.redirect("Feedback");
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Internal Server Error");
   }
 };

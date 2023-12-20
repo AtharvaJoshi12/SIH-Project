@@ -15,6 +15,7 @@ router.get("/test/aptitude", appControllers.aptitudePage);
 router.get("/test/interest", appControllers.interestPage);
 router.get("/test/hobbies", appControllers.hobbiesPage);
 router.get("/test/result", appControllers.resultPage);
+router.get("/feedback", appControllers.feedbackPage);
 
 router.post("/studentRegister", appControllers.studentRegisterAPI);
 router.post("/studentLogin", appControllers.studentLoginAPI);
@@ -22,5 +23,6 @@ router.post("/editProfile", appControllers.editProfileAPI);
 router.post("/parentRegister", appControllers.parentRegisterAPI);
 router.post("/parentLogin", appControllers.parentLoginAPI);
 router.post("/test/result", appControllers.resultAPI);
+router.post("/feedback", appControllers.feedbackAPI);
 
 module.exports = router;
